@@ -1,0 +1,775 @@
+openapi: 3.0.1
+info:
+  title: Helix Labs Structure Data
+  description: >-
+    This API exposes structural information for the human proteome.
+
+
+    The API is secured and you need credentials to be able to use it. We use the
+    industry-standard OAuth2 protocol. For those of you who'd like more
+    information about the ins and outs of OAuth2 please take a look here. Note
+    that using the API is incredibly easy; you don't really need an in-depth
+    understanding of OAuth2 to be able to use this API. This documentation
+    contains all the information you need to get started!
+
+    Client access tokens
+
+
+    We use the Auth0.com service to manage authentication and authorization.
+    Please check that you have received a client_id and a client_secret before
+    continuing. Retrieval of your access token is a two-step process:
+
+
+    - Your application authenticates with Auth0 using its client_id and
+    client_secret.
+
+    - Auth0 validates this information and returns an access_token.
+
+
+    Retrieving the access token for interaction with our API can be achieved by
+    sending a request to the Auth0 authentication servers. Tokens have a
+    lifespan of 24 hours. You need to re-acquire a new one before the old one
+    runs out in order to keep using the API without interruption.
+
+
+    ```
+
+    curl --request POST \
+      --url https://eggwhite.eu.auth0.com/oauth/token \
+      --header 'content-type: application/json' \
+      --data '{"client_id":"<client_id>","client_secret":<client_secret>, "audience":"predictions.ai.bio-prodict.nl","grant_type":"client_credentials"}'
+    ```
+
+
+    Returns the following JSON response:
+
+
+    ```
+
+    { "access_token": "<access_token>", "expires_in": 86400, "token_type":
+    "Bearer" }
+
+    ```
+
+
+    We recommend the requests library for Python for ease of use.
+
+
+    API Usage
+
+    ---------
+
+
+    When you have acquired an API token, you need to include it in the
+    Authorization header, preceded by the `Bearer` keyword.
+
+
+    ```
+
+    curl --request GET \
+      --url https://api.helixlabs.ai/transcripts \
+      --header 'Authorization: Bearer <access_token>'
+    ```
+  termsOfService: >-
+    https://www.bio-prodict.com/static/pdf/general-terms-and-conditions-V20191130-bio-prodict.pdf
+  contact:
+    email: info@helixlabs.ai
+  version: 0.1.0
+externalDocs:
+  description: Find out more about Helix Labs
+  url: 'https://helixlabs.ai'
+servers:
+  - url: 'https://structure.helixlabs.ai/v1'
+tags:
+  - name: Conservation
+    description: Conservation data based on 3DM alignments.
+  - name: Structure
+    description: Structure data based on 3DM alignments.
+paths:
+  '/transcripts/{transcript_id}/{residue_number}/conservation':
+    get:
+      tags:
+        - Conservation
+      summary: Conservation information for a position in a transcript
+      operationId: getConservationPosition
+      parameters:
+        - name: transcript_id
+          in: path
+          description: The transcript identifier according the ensembl standard.
+          required: true
+          schema:
+            type: string
+        - name: residue_number
+          in: path
+          description: Number of the residue according to the transcript provided.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    transcript_identifier:
+                      type: string
+                    alignment_type:
+                      type: string
+                    position:
+                      type: integer
+                    wildtype:
+                      type: string
+                    conservationala:
+                      type: number
+                    conservationarg:
+                      type: number
+                    conservationasn:
+                      type: number
+                    conservationasp:
+                      type: number
+                    conservationcys:
+                      type: number
+                    conservationgln:
+                      type: number
+                    conservationglu:
+                      type: number
+                    conservationgly:
+                      type: number
+                    conservationhis:
+                      type: number
+                    conservationile:
+                      type: number
+                    conservationleu:
+                      type: number
+                    conservationlys:
+                      type: number
+                    conservationmet:
+                      type: number
+                    conservationphe:
+                      type: number
+                    conservationpro:
+                      type: number
+                    conservationser:
+                      type: number
+                    conservationthr:
+                      type: number
+                    conservationtrp:
+                      type: number
+                    conservationtyr:
+                      type: number
+                    conservationval:
+                      type: number
+                  examples: {}
+              examples:
+                Example Response:
+                  value:
+                    - alignment_type: NONE
+                      conservationala: 1.5567765567765561
+                      conservationarg: 4.395604395604396
+                      conservationasn: 0.915750915750915
+                      conservationasp: 0.36630036630036605
+                      conservationcys: 0.274725274725274
+                      conservationgln: 1.373626373626373
+                      conservationglu: 0.457875457875457
+                      conservationgly: 33.05860805860806
+                      conservationhis: 0.274725274725274
+                      conservationile: 0.274725274725274
+                      conservationleu: 6.227106227106227
+                      conservationlys: 3.388278388278388
+                      conservationmet: 0
+                      conservationphe: 0
+                      conservationpro: 0.09157509157509101
+                      conservationser: 45.42124542124542
+                      conservationthr: 1.19047619047619
+                      conservationtrp: 0
+                      conservationtyr: 0.18315018315018303
+                      conservationval: 0.549450549450549
+                      position: 30
+                      transcript_identifier: ENST00000373573
+                      wildtype: Ser
+                    - alignment_type: STRUCTURE_PDBCLUSTER
+                      conservationala: 6.218978102189781
+                      conservationarg: 6.379562043795621
+                      conservationasn: 18.56204379562044
+                      conservationasp: 7.153284671532846
+                      conservationcys: 0.262773722627737
+                      conservationgln: 3.664233576642336
+                      conservationglu: 8.912408759124087
+                      conservationgly: 8.109489051094892
+                      conservationhis: 1.4598540145985401
+                      conservationile: 0.131386861313868
+                      conservationleu: 9.576642335766424
+                      conservationlys: 12.350364963503651
+                      conservationmet: 0.29927007299270003
+                      conservationphe: 0.262773722627737
+                      conservationpro: 0.6350364963503651
+                      conservationser: 5.7299270072992705
+                      conservationthr: 2.124087591240876
+                      conservationtrp: 7.189781021897811
+                      conservationtyr: 0.846715328467153
+                      conservationval: 0.131386861313868
+                      position: 30
+                      transcript_identifier: ENST00000373573
+                      wildtype: Ser
+        '404':
+          description: No conservation data is available for this position.
+          content: {}
+      security:
+        - structure_api_sec:
+            - 'read:conservation_data'
+      description: >-
+        Gets the conservation statistics for a position in a transcript
+        according to 3DM alignments.
+  '/transcripts/{transcript_id}/structure':
+    get:
+      tags:
+        - Structure
+      summary: Structure information for every available residue in the transcript.
+      operationId: getStructureFull
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  system:
+                    type: string
+                  values:
+                    type: object
+                    properties:
+                      '{residue_number}':
+                        type: object
+                        properties:
+                          alignment_type:
+                            type: string
+                          bfactor:
+                            type: number
+                          is_direct_structure:
+                            type: boolean
+                          is_human:
+                            type: boolean
+                          molecule:
+                            type: string
+                          pdb_id:
+                            type: string
+                          pdb_residuenumber:
+                            type: string
+                          percentage_identity:
+                            type: string
+                          surfacess_accessible:
+                            type: number
+                          transcript_identifier:
+                            type: string
+                          transcript_position:
+                            type: integer
+                        required:
+                          - alignment_type
+                          - bfactor
+                          - is_direct_structure
+                          - is_human
+                          - molecule
+                          - pdb_id
+                          - pdb_residuenumber
+                          - percentage_identity
+                          - surfacess_accessible
+                          - transcript_identifier
+                          - transcript_position
+              examples:
+                Example Response:
+                  value:
+                    system: human_v4.ENST00000373573
+                    values:
+                      '100':
+                        alignment_type: 3DM_SCOP
+                        bfactor: 50.3
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '100'
+                        percentage_identity: 1
+                        position: 100
+                        surfaces_accessible: 158.52
+                        system: human_v4.ENST00000373573
+                      '101':
+                        alignment_type: 3DM_PDBCLUSTER
+                        bfactor: 53.9
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '101'
+                        percentage_identity: 1
+                        position: 101
+                        surfaces_accessible: 14.18
+                        system: human_v4.ENST00000373573
+                      '102':
+                        alignment_type: 3DM_PDBCLUSTER
+                        bfactor: 46.4
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '102'
+                        percentage_identity: 1
+                        position: 102
+                        surfaces_accessible: 0
+                        system: human_v4.ENST00000373573
+                      '103':
+                        alignment_type: 3DM_PDBCLUSTER
+                        bfactor: 48.6
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '103'
+                        percentage_identity: 1
+                        position: 103
+                        surfaces_accessible: 29.83
+                        system: human_v4.ENST00000373573
+                      '104':
+                        alignment_type: 3DM_PDBCLUSTER
+                        bfactor: 55.2
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '104'
+                        percentage_identity: 1
+                        position: 104
+                        surfaces_accessible: 5.19
+                        system: human_v4.ENST00000373573
+                      '105':
+                        alignment_type: 3DM_PDBCLUSTER
+                        bfactor: 62.9
+                        is_direct_structure: true
+                        is_human: true
+                        molecule: A
+                        pdb_id: 4qa4
+                        pdb_residuenumber: '105'
+                        percentage_identity: 1
+                        position: 105
+                        surfaces_accessible: 36.21
+                        system: human_v4.ENST00000373573
+        '404':
+          description: No structure data is available for this transcript.
+          content: {}
+      security:
+        - structure_api_sec:
+            - 'read:structure_data'
+      description: Returns structural data for all the residues in a transcript.
+    parameters:
+      - schema:
+          type: string
+        name: transcript_id
+        in: path
+        required: true
+  '/transcripts/{transcript_id}/structure/{property}':
+    get:
+      tags:
+        - Structure
+      summary: Select structure information for a transcript.
+      operationId: getStructurePositionProperty
+      parameters:
+        - name: transcript_id
+          in: path
+          description: The transcript identifier according the ensembl standard.
+          required: true
+          schema:
+            type: string
+        - name: property
+          in: path
+          description: >-
+            The property that should be returned. One of
+            ('sidechain_accessibility', 'bfactor').
+          required: true
+          schema:
+            type: string
+      security:
+        - structure_api_sec:
+            - 'read:structure_data'
+      description: >
+        Returns a single property for all the residues in a transcript. The
+        following properties are currently supported:
+
+
+        - sidechain_accessibility
+
+        - bfactor
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requested_property:
+                    type: string
+                  system:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        value:
+                          type: integer
+                        pdb_id:
+                          type: string
+                        chain:
+                          type: string
+              examples:
+                Bfactor Example:
+                  value:
+                    requested_property: bfactor
+                    transcript_identifier: ENST00000373573
+                    values:
+                      '100':
+                        - chain: A
+                          pdb_id: 4qa4
+                          value: 50.3
+                        - chain: A
+                          pdb_id: 3f07
+                          value: 88.9
+                        - chain: A
+                          pdb_id: 1t64
+                          value: 13.7
+                        - chain: A
+                          pdb_id: 3f0r
+                          value: 76.1
+                        - chain: A
+                          pdb_id: 5fcw
+                          value: 33.6
+                        - chain: A
+                          pdb_id: 4qa7
+                          value: 51.6
+                      '101':
+                        - chain: A
+                          pdb_id: 4qa4
+                          value: 53.9
+                        - chain: A
+                          pdb_id: 1t64
+                          value: 14.5
+                        - chain: A
+                          pdb_id: 3f07
+                          value: 88
+                        - chain: A
+                          pdb_id: 3f0r
+                          value: 73.7
+                        - chain: A
+                          pdb_id: 5fcw
+                          value: 32.8
+                        - chain: A
+                          pdb_id: 4qa7
+                          value: 49.4
+                      '102':
+                        - chain: A
+                          pdb_id: 4qa4
+                          value: 46.4
+                        - chain: A
+                          pdb_id: 1t64
+                          value: 14
+                        - chain: A
+                          pdb_id: 3f07
+                          value: 81.8
+                        - chain: A
+                          pdb_id: 3f0r
+                          value: 68.2
+                        - chain: A
+                          pdb_id: 5fcw
+                          value: 29.9
+                        - chain: A
+                          pdb_id: 4qa7
+                          value: 52.1
+        '404':
+          description: Transcript Not Found
+  '/transcripts/{transcript_id}/{residue_number}/structure':
+    get:
+      tags:
+        - Structure
+      summary: Structure information for a position in a transcript.
+      operationId: getStructurePosition
+      parameters:
+        - name: transcript_id
+          in: path
+          description: The transcript identifier according the ensembl standard.
+          required: true
+          schema:
+            type: string
+        - name: residue_number
+          in: path
+          description: Number of the residue according to the transcript provided.
+          required: true
+          schema:
+            type: integer
+        - schema:
+            type: boolean
+          in: query
+          name: all
+          description: >
+            Optional, if set to true structure data from all alignments will be
+            returned. If not set, or set to false, only the best structure data
+            will be returned.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      bfactor:
+                        type: number
+                      transcript_identifier:
+                        type: string
+                      transcript_position:
+                        type: integer
+                      surfaces_accessible:
+                        type: number
+                      chain:
+                        type: string
+                      pdb_id:
+                        type: string
+                      pdb_residuenumber:
+                        type: string
+                      alignment_type:
+                        type: string
+                      percentage_identity:
+                        type: number
+                      is_direct_structure:
+                        type: boolean
+                      is_human:
+                        type: boolean
+                      resolution:
+                        type: number
+                      taxonomy_id:
+                        type: integer
+              examples:
+                Example Response (Default):
+                  value:
+                    system: human_v4.ENST00000373573
+                    values:
+                      '100':
+                        - alignment_type: 3DM_SCOP
+                          bfactor: 50.3
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '100'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 158.52
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 100
+                      '101':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 53.9
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '101'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 14.18
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 101
+                      '102':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 46.4
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '102'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 0
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 102
+                      '103':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 48.6
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '103'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 29.83
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 103
+                      '104':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 55.2
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '104'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 5.19
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 104
+                      '105':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 62.9
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '105'
+                          percentage_identity: 1
+                          resolution: 1
+                          surfaces_accessible: 36.21
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                          transcript_position: 105
+                Example Response (With all=true):
+                  value:
+                    system: human_v4.ENST00000373573
+                    values:
+                      '100':
+                        - alignment_type: 3DM_SCOP
+                          bfactor: 50.3
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '100'
+                          percentage_identity: 1
+                          position: 100
+                          resolution: 1
+                          surfaces_accessible: 158.52
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                        - alignment_type: 3DM_SCOP
+                          bfactor: 88.9
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 3f07
+                          pdb_residuenumber: '100'
+                          percentage_identity: 1
+                          position: 100
+                          resolution: 3
+                          surfaces_accessible: 177.63
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                      '101':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 53.9
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '101'
+                          percentage_identity: 1
+                          position: 101
+                          resolution: 1
+                          surfaces_accessible: 14.18
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 14.5
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 1t64
+                          pdb_residuenumber: '101'
+                          percentage_identity: 1
+                          position: 101
+                          resolution: 1
+                          surfaces_accessible: 3.55
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 88
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 3f07
+                          pdb_residuenumber: '101'
+                          percentage_identity: 1
+                          position: 101
+                          resolution: 3
+                          surfaces_accessible: 34.91
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                      '102':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 46.4
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 4qa4
+                          pdb_residuenumber: '102'
+                          percentage_identity: 1
+                          position: 102
+                          resolution: 1
+                          surfaces_accessible: 0
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 14
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 1t64
+                          pdb_residuenumber: '102'
+                          percentage_identity: 1
+                          position: 102
+                          resolution: 1
+                          surfaces_accessible: 0
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 81.8
+                          chain: A
+                          is_direct_structure: true
+                          is_human: true
+                          pdb_id: 3f07
+                          pdb_residuenumber: '102'
+                          percentage_identity: 1
+                          position: 102
+                          resolution: 3
+                          surfaces_accessible: 2.95
+                          taxonomy_id: 9606
+                          transcript_identifier: human_v4.ENST00000373573
+        '404':
+          description: No structure data is available for this position.
+          content: {}
+      security:
+        - structure_api_sec:
+            - 'read:structure_data'
+      description: Returns extended structural data for a given residues in a transcript.
+components:
+  securitySchemes:
+    structure_api_sec:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://eggwhite.eu.auth0.com/oauth/token'
+          scopes:
+            'read:structure_data': Read structure data
+            'read:conservation_data': Read conservation data

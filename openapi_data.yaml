@@ -80,17 +80,43 @@ paths:
             application/json:
               schema:
                 type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
                 items:
                   type: object
+                  required:
+                    - alignment_type
+                    - alignment_depth
+                    - conservationala
+                    - conservationarg
+                    - conservationasn
+                    - conservationasp
+                    - conservationcys
+                    - conservationgln
+                    - conservationglu
+                    - conservationgly
+                    - conservationhis
+                    - conservationile
+                    - conservationleu
+                    - conservationlys
+                    - conservationmet
+                    - conservationphe
+                    - conservationpro
+                    - conservationser
+                    - conservationthr
+                    - conservationtrp
+                    - conservationtyr
+                    - conservationval
+                    - position
+                    - transcript_identifier
+                    - wildtype
                   properties:
-                    transcript_identifier:
-                      type: string
                     alignment_type:
                       type: string
-                    position:
-                      type: integer
-                    wildtype:
-                      type: string
+                      minLength: 1
+                    alignment_depth:
+                      type: number
                     conservationala:
                       type: number
                     conservationarg:
@@ -131,11 +157,19 @@ paths:
                       type: number
                     conservationval:
                       type: number
-                  examples: {}
+                    position:
+                      type: number
+                    transcript_identifier:
+                      type: string
+                      minLength: 1
+                    wildtype:
+                      type: string
+                      minLength: 1
               examples:
                 Example Response:
                   value:
-                    - alignment_type: NONE
+                    - alignment_type: FULL_LENGTH
+                      alignment_depth: 1092
                       conservationala: 1.5567765567765561
                       conservationarg: 4.395604395604396
                       conservationasn: 0.915750915750915
@@ -159,7 +193,8 @@ paths:
                       position: 30
                       transcript_identifier: ENST00000373573
                       wildtype: Ser
-                    - alignment_type: STRUCTURE_PDBCLUSTER
+                    - alignment_type: 3DM_PDBCLUSTER
+                      alignment_depth: 13700
                       conservationala: 6.218978102189781
                       conservationarg: 6.379562043795621
                       conservationasn: 18.56204379562044
@@ -189,7 +224,16 @@ paths:
       security:
         - structure_api_sec:
             - 'read:conservation_data'
-      description: Gets the conservation statistics for a position in a transcript according to 3DM alignments.
+      description: |
+        Gets the conservation statistics for a position in a transcript according to 3DM alignments. Where possible, this call will return multiple alignments. These include, in order of general quality:
+
+        - **FULL_LENGTH**: A full length sequence alignment. These statistics are available for every position. Full length alignments are generally not to deep.
+        - **PFAM**: Alignments based on domains from the PFAM (Protein Family Database).
+        - **3DM_SCOP**: Alignments based on 3DM's SCOP (Structural Classification of Proteins) systems.
+        - **3DM_SFV1**: Alignments based on a true (generic) 3DM system. Proprietary systems are not included in these alignments.
+        - **3DM_PDBCLUSTER**: Alignmenst based on 3DM's PDBCluster systems.
+
+        The latter three alignment types are generally deeper and based on 3D protein structures, while the former two are more available.
   '/transcripts/{transcript_id}/structure':
     get:
       tags:

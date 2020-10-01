@@ -229,9 +229,9 @@ paths:
 
         - **FULL_LENGTH**: A full length sequence alignment. These statistics are available for every position. Full length alignments are generally not to deep.
         - **PFAM**: Alignments based on domains from the PFAM (Protein Family Database).
+        - **3DM_PDBCLUSTER**: Alignments based on 3DM's PDBCluster systems.
         - **3DM_SCOP**: Alignments based on 3DM's SCOP (Structural Classification of Proteins) systems.
         - **3DM_SFV1**: Alignments based on a true (generic) 3DM system. Proprietary systems are not included in these alignments.
-        - **3DM_PDBCLUSTER**: Alignmenst based on 3DM's PDBCluster systems.
 
         The latter three alignment types are generally deeper and based on 3D protein structures, while the former two are more available.
   '/transcripts/{transcript_id}/structure':
@@ -965,13 +965,13 @@ paths:
                             minLength: 1
       operationId: get-transcripts-transcript_id-conservation
       description: |
-        Gets the conservation statistics for all the positions in a transcript according to 3DM alignments. Where possible, this call will return multiple alignments. These include, in order of general quality:
+        Gets the conservation statistics for a position in a transcript according to 3DM alignments. Where possible, this call will return multiple alignments. These include, in order of general quality:
 
         - **FULL_LENGTH**: A full length sequence alignment. These statistics are available for every position. Full length alignments are generally not to deep.
         - **PFAM**: Alignments based on domains from the PFAM (Protein Family Database).
+        - **3DM_PDBCLUSTER**: Alignments based on 3DM's PDBCluster systems.
         - **3DM_SCOP**: Alignments based on 3DM's SCOP (Structural Classification of Proteins) systems.
         - **3DM_SFV1**: Alignments based on a true (generic) 3DM system. Proprietary systems are not included in these alignments.
-        - **3DM_PDBCLUSTER**: Alignmenst based on 3DM's PDBCluster systems.
 
         The latter three alignment types are generally deeper and based on 3D protein structures, while the former two are more available.
       parameters: []

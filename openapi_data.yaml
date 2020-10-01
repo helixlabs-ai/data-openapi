@@ -774,7 +774,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Conservation information for a full transcript
       tags:
         - Conservation
       responses:

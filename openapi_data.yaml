@@ -766,6 +766,213 @@ paths:
         - structure_api_sec:
             - 'read:structure_data'
       description: Returns extended structural data for a given residues in a transcript.
+  '/transcripts/{transcript_id}/conservation':
+    parameters:
+      - schema:
+          type: string
+        name: transcript_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - '0'
+                    - '1'
+                  properties:
+                    '0':
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        required:
+                          - alignment_depth
+                          - alignment_type
+                          - conservationala
+                          - conservationarg
+                          - conservationasn
+                          - conservationasp
+                          - conservationcys
+                          - conservationgln
+                          - conservationglu
+                          - conservationgly
+                          - conservationhis
+                          - conservationile
+                          - conservationleu
+                          - conservationlys
+                          - conservationmet
+                          - conservationphe
+                          - conservationpro
+                          - conservationser
+                          - conservationthr
+                          - conservationtrp
+                          - conservationtyr
+                          - conservationval
+                          - transcript_identifier
+                          - transcript_position
+                          - wildtype
+                        properties:
+                          alignment_depth:
+                            type: number
+                          alignment_type:
+                            type: string
+                            minLength: 1
+                          conservationala:
+                            type: number
+                          conservationarg:
+                            type: number
+                          conservationasn:
+                            type: number
+                          conservationasp:
+                            type: number
+                          conservationcys:
+                            type: number
+                          conservationgln:
+                            type: number
+                          conservationglu:
+                            type: number
+                          conservationgly:
+                            type: number
+                          conservationhis:
+                            type: number
+                          conservationile:
+                            type: number
+                          conservationleu:
+                            type: number
+                          conservationlys:
+                            type: number
+                          conservationmet:
+                            type: number
+                          conservationphe:
+                            type: number
+                          conservationpro:
+                            type: number
+                          conservationser:
+                            type: number
+                          conservationthr:
+                            type: number
+                          conservationtrp:
+                            type: number
+                          conservationtyr:
+                            type: number
+                          conservationval:
+                            type: number
+                          transcript_identifier:
+                            type: string
+                            minLength: 1
+                          transcript_position:
+                            type: number
+                          wildtype:
+                            type: string
+                            minLength: 1
+                    '1':
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        required:
+                          - alignment_depth
+                          - alignment_type
+                          - conservationala
+                          - conservationarg
+                          - conservationasn
+                          - conservationasp
+                          - conservationcys
+                          - conservationgln
+                          - conservationglu
+                          - conservationgly
+                          - conservationhis
+                          - conservationile
+                          - conservationleu
+                          - conservationlys
+                          - conservationmet
+                          - conservationphe
+                          - conservationpro
+                          - conservationser
+                          - conservationthr
+                          - conservationtrp
+                          - conservationtyr
+                          - conservationval
+                          - transcript_identifier
+                          - transcript_position
+                          - wildtype
+                        properties:
+                          alignment_depth:
+                            type: number
+                          alignment_type:
+                            type: string
+                            minLength: 1
+                          conservationala:
+                            type: number
+                          conservationarg:
+                            type: number
+                          conservationasn:
+                            type: number
+                          conservationasp:
+                            type: number
+                          conservationcys:
+                            type: number
+                          conservationgln:
+                            type: number
+                          conservationglu:
+                            type: number
+                          conservationgly:
+                            type: number
+                          conservationhis:
+                            type: number
+                          conservationile:
+                            type: number
+                          conservationleu:
+                            type: number
+                          conservationlys:
+                            type: number
+                          conservationmet:
+                            type: number
+                          conservationphe:
+                            type: number
+                          conservationpro:
+                            type: number
+                          conservationser:
+                            type: number
+                          conservationthr:
+                            type: number
+                          conservationtrp:
+                            type: number
+                          conservationtyr:
+                            type: number
+                          conservationval:
+                            type: number
+                          transcript_identifier:
+                            type: string
+                            minLength: 1
+                          transcript_position:
+                            type: number
+                          wildtype:
+                            type: string
+                            minLength: 1
+      operationId: get-transcripts-transcript_id-conservation
+      description: |
+        Gets the conservation statistics for all the positions in a transcript according to 3DM alignments. Where possible, this call will return multiple alignments. These include, in order of general quality:
+
+        - **FULL_LENGTH**: A full length sequence alignment. These statistics are available for every position. Full length alignments are generally not to deep.
+        - **PFAM**: Alignments based on domains from the PFAM (Protein Family Database).
+        - **3DM_SCOP**: Alignments based on 3DM's SCOP (Structural Classification of Proteins) systems.
+        - **3DM_SFV1**: Alignments based on a true (generic) 3DM system. Proprietary systems are not included in these alignments.
+        - **3DM_PDBCLUSTER**: Alignmenst based on 3DM's PDBCluster systems.
+
+        The latter three alignment types are generally deeper and based on 3D protein structures, while the former two are more available.
 components:
   securitySchemes:
     structure_api_sec:

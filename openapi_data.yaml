@@ -775,7 +775,8 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Conservation
       responses:
         '200':
           description: OK
@@ -973,6 +974,10 @@ paths:
         - **3DM_PDBCLUSTER**: Alignmenst based on 3DM's PDBCluster systems.
 
         The latter three alignment types are generally deeper and based on 3D protein structures, while the former two are more available.
+      parameters: []
+      security:
+        - structure_api_sec:
+            - 'read:conservation_data'
 components:
   securitySchemes:
     structure_api_sec:

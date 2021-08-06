@@ -1318,8 +1318,6 @@ paths:
         description: Ensembl transcript identifier
     get:
       summary: External information for every position in the transcript
-      tags:
-        - Literature
       responses:
         '200':
           description: OK

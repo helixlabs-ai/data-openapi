@@ -985,8 +985,9 @@ paths:
         name: transcript_id
         in: path
         required: true
+        description: Ensembl transcript identifier
     get:
-      summary: Your GET endpoint
+      summary: Literature information for every position in the transcript
       tags: []
       responses:
         '200':
@@ -1080,6 +1081,230 @@ paths:
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
       description: 'Returns all relevant literature for every position in a transcript. '
+  '/transcripts/{transcript_id}/{position}literature':
+    parameters:
+      - schema:
+          type: string
+        name: transcript_id
+        in: path
+        required: true
+        description: Ensembl transcript identifier
+      - schema:
+          type: string
+        name: position
+        in: path
+        required: true
+        description: Position of the variant in the transcript
+    get:
+      summary: Literature information for a single position in the transcript
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    articleid:
+                      type: number
+                      description: Numeric article identifier
+                    mutant:
+                      type: string
+                      minLength: 1
+                      description: Mutant amino acid
+                    position:
+                      type: number
+                      description: Position of the variant
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    variant:
+                      type: string
+                      minLength: 1
+                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                    wildtype:
+                      type: string
+                      minLength: 1
+                      description: The wildtype amino acid at this position.
+                  required:
+                    - article_source
+                    - articleid
+                    - mutant
+                    - position
+                    - score
+                    - url
+                    - variant
+                    - wildtype
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: 'Returns all relevant literature for a position in a transcript. '
+  '/transcripts/{transcript_id}/{position}/{mutant}/literature':
+    parameters:
+      - schema:
+          type: string
+        name: transcript_id
+        in: path
+        required: true
+        description: Ensembl transcript identifier
+      - schema:
+          type: string
+        name: position
+        in: path
+        required: true
+        description: Position of the variant in the transcript
+      - schema:
+          type: string
+        name: mutant
+        in: path
+        required: true
+        description: 'The mutant amino acid, can be single or 3 letter code.'
+    get:
+      summary: Literature information for a single variant in the transcript
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    articleid:
+                      type: number
+                      description: Numeric article identifier
+                    mutant:
+                      type: string
+                      minLength: 1
+                      description: Mutant amino acid
+                    position:
+                      type: number
+                      description: Position of the variant
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    variant:
+                      type: string
+                      minLength: 1
+                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                    wildtype:
+                      type: string
+                      minLength: 1
+                      description: The wildtype amino acid at this position.
+                  required:
+                    - article_source
+                    - articleid
+                    - mutant
+                    - position
+                    - score
+                    - url
+                    - variant
+                    - wildtype
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: 'Returns all relevant literature for a variant in a transcript. '
 components:
   securitySchemes:
     structure_api_sec:

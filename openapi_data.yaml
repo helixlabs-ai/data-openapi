@@ -988,7 +988,8 @@ paths:
         description: Ensembl transcript identifier
     get:
       summary: Literature information for every position in the transcript
-      tags: []
+      tags:
+        - Literature
       responses:
         '200':
           description: OK
@@ -1097,7 +1098,8 @@ paths:
         description: Position of the variant in the transcript
     get:
       summary: Literature information for a single position in the transcript
-      tags: []
+      tags:
+        - Literature
       responses:
         '200':
           description: OK
@@ -1212,7 +1214,8 @@ paths:
         description: 'The mutant amino acid, can be single or 3 letter code.'
     get:
       summary: Literature information for a single variant in the transcript
-      tags: []
+      tags:
+        - Literature
       responses:
         '200':
           description: OK

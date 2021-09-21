@@ -1083,7 +1083,12 @@ paths:
       description: |-
         This endpoint adds the ability to retrieve literature based on a genomic location identifier. It uses VEP to allow for a multitude of identifier formats. The following formats are supported:
 
-        - HSVG
+
+        - SPDI: i.e. `NC_000016.10:68684738:G:A` (`NC_000016` indicates chromosome 16 version 10 in GRCh38.p13)
+        - HGVSG: i.e. `NC_000016.10:g.68684739G>A`
+        - RSID: i.e. `rs145160881``
+        - HGVSP: i.e. `ENSP00000264012.4:p.Val447Ile` or `NP_001304124.1:p.Val447Ile` or `XP_011521102.1:p.Val447Ile`
+        - HGVSC: i.e. `ENST00000264012.9:c.1339G>A` or `NM_001317195.3:c.1339G>A` or `XM_011522800.3:c.1339G>A`
   '/transcripts/{transcript_id}/literature':
     parameters:
       - schema:

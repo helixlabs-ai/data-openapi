@@ -535,30 +535,44 @@ paths:
                     properties:
                       bfactor:
                         type: number
+                        description: 'A continuous term describing the atomic movements of a residue with a crystalized structure. Commonly used to identify flexibility of atoms, side chains whole regions of a protein.'
                       transcript_identifier:
                         type: string
+                        description: Ensembl transcript identifier.
                       transcript_position:
                         type: integer
+                        description: |
+                          Position of a residue in the Ensembl transcript.
                       surfaces_accessible:
                         type: number
+                        description: The area of a residue that is accessible by a solvent in the 3D structure.
                       chain:
                         type: string
+                        description: Chain/Molecule identifier inside a PDB structure.
                       pdb_id:
                         type: string
+                        description: PDB Identifier string (without chain identifier).
                       pdb_residuenumber:
                         type: string
+                        description: Number of this residue inside the PDB structure (this may differ from the transcript position).
                       alignment_type:
                         type: string
+                        description: String that describes the type of alignment from which this data is derived. When 3DM-type alignments are available these are generally the most accurate.
                       percentage_identity:
                         type: number
+                        description: Percentage identity of the structure with the transcript.
                       is_direct_structure:
                         type: boolean
+                        description: 'Whether or not the structure corresponds directly to the transcript protein, or is a homolog.'
                       is_human:
                         type: boolean
+                        description: Whether or not the structure is of a human protein.
                       resolution:
                         type: number
+                        description: Resolution of the structure.
                       taxonomy_id:
                         type: integer
+                        description: NCBI taxonomy identifier corresponding to the structure. Common identifiers include 9606 for human and 562 for E. coli.
               examples:
                 Example Response (Default):
                   value:
@@ -1419,6 +1433,221 @@ paths:
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
       description: 'Returns all relevant literature for a variant in a transcript. '
+  '/transcripts/{gene_id}/dna':
+    parameters:
+      - schema:
+          type: string
+        name: gene_id
+        in: path
+        required: true
+    get:
+      summary: DNA literature related to a given gene.
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    pubmed_id:
+                      type: number
+                      description: Numeric article identifier
+                    variant:
+                      type: string
+                      minLength: 1
+                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                    position:
+                      type: number
+                      description: Position of the variant
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    wildtype:
+                      type: string
+                      minLength: 1
+                      description: The wildtype amino acid at this position.
+                    mutationstr:
+                      type: string
+                      description: String representing the variant as extracted from the article.
+                    taxonomy_id:
+                      type: string
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    gene_id:
+                      type: string
+                      description: NCBI Identifier of the corresponding gene.
+                  required:
+                    - article_source
+                    - pubmed_id
+                    - variant
+                    - position
+                    - score
+                    - url
+                    - variant
+                    - wildtype
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint specifically returns literature outside the coding sequence. **Beta**
+  '/transcripts/{transcript_id}/dna':
+    parameters:
+      - schema:
+          type: string
+        name: transcript_id
+        in: path
+        required: true
+    get:
+      summary: DNA literature related to a given Transcript.
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    pubmed_id:
+                      type: number
+                      description: Numeric article identifier
+                    variant:
+                      type: string
+                      minLength: 1
+                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                    position:
+                      type: number
+                      description: Position of the variant
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    wildtype:
+                      type: string
+                      minLength: 1
+                      description: The wildtype amino acid at this position.
+                    mutationstr:
+                      type: string
+                      description: String representing the variant as extracted from the article.
+                    taxonomy_id:
+                      type: string
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    gene_id:
+                      type: string
+                      description: NCBI Identifier of the corresponding gene.
+                  required:
+                    - article_source
+                    - pubmed_id
+                    - variant
+                    - position
+                    - score
+                    - url
+                    - wildtype
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint specifically returns literature outside the coding sequence. **Beta**
   '/transcripts/{transcript_id}/external':
     parameters:
       - schema:

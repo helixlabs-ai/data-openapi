@@ -1441,7 +1441,7 @@ paths:
         in: path
         required: true
     get:
-      summary: DNA literature related to a given gene.
+      summary: DNA literature related to a given gene
       tags:
         - Literature
       responses:
@@ -1549,7 +1549,7 @@ paths:
         in: path
         required: true
     get:
-      summary: DNA literature related to a given Transcript.
+      summary: DNA literature related to a given transcript
       tags:
         - Literature
       responses:

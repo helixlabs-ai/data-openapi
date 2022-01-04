@@ -1549,7 +1549,7 @@ paths:
         in: path
         required: true
     get:
-      summary: DNA literature related to a given gene
+      summary: DNA literature related to a given gene by name
       tags:
         - Literature
       responses:

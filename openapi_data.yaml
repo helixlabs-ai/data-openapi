@@ -246,127 +246,104 @@ paths:
           content:
             application/json:
               schema:
+                description: ''
                 type: object
+                x-examples:
+                  example-1:
+                    transcript_identifier: ENST00000560422
+                    values:
+                      '10':
+                        - alignment_type: 3DM_PDBCLUSTER
+                          bfactor: 0
+                          chain: A
+                          is_direct_structure: false
+                          is_human: false
+                          pdb_id: 2efi
+                          pdb_residuenumber: '9'
+                          percentage_identity: 0.82
+                          resolution: null
+                          surfaces_accessible: 83.2
+                          taxonomy_id: null
+                          transcript_identifier: ENST00000560422
+                          transcript_position: 10
                 properties:
-                  system:
+                  transcript_identifier:
                     type: string
+                    minLength: 1
+                    description: Transcript identifier
                   values:
                     type: object
+                    required:
+                      - <residuenumber>
                     properties:
-                      '{residue_number}':
-                        type: object
-                        properties:
-                          alignment_type:
-                            type: string
-                          bfactor:
-                            type: number
-                          is_direct_structure:
-                            type: boolean
-                          is_human:
-                            type: boolean
-                          molecule:
-                            type: string
-                          pdb_id:
-                            type: string
-                          pdb_residuenumber:
-                            type: string
-                          percentage_identity:
-                            type: string
-                          surfacess_accessible:
-                            type: number
-                          transcript_identifier:
-                            type: string
-                          transcript_position:
-                            type: integer
-                        required:
-                          - alignment_type
-                          - bfactor
-                          - is_direct_structure
-                          - is_human
-                          - molecule
-                          - pdb_id
-                          - pdb_residuenumber
-                          - percentage_identity
-                          - surfacess_accessible
-                          - transcript_identifier
-                          - transcript_position
+                      <residuenumber>:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: object
+                          properties:
+                            alignment_type:
+                              type: string
+                              minLength: 1
+                            bfactor:
+                              type: number
+                              description: 'A continuous term describing the atomic movements of a residue with a crystalized structure. Commonly used to identify flexibility of atoms, side chains whole regions of a protein.'
+                            chain:
+                              type: string
+                              minLength: 1
+                              description: Chain/Molecule identifier inside a PDB structure.
+                            is_direct_structure:
+                              type: boolean
+                              description: 'Whether or not the structure corresponds directly to the transcript protein, or is a homolog.'
+                            is_human:
+                              type: boolean
+                              description: Whether or not the structure is of a human protein.
+                            pdb_id:
+                              type: string
+                              minLength: 1
+                              description: PDB Identifier string (without chain identifier).
+                            pdb_residuenumber:
+                              type: string
+                              minLength: 1
+                              description: Number of this residue inside the PDB structure (this may differ from the transcript position).
+                            percentage_identity:
+                              type: number
+                              description: Percentage identity of the structure with the transcript.
+                            resolution:
+                              description: |
+                                Resolution of the structure.
+                              type: number
+                            surfaces_accessible:
+                              type: number
+                              description: 'Whether or not the structure corresponds directly to the transcript protein, or is a homolog.'
+                            taxonomy_id:
+                              type: integer
+                              description: NCBI taxonomy identifier corresponding to the structure. Common identifiers include 9606 for human and 562 for E. coli.
+                            transcript_identifier:
+                              type: string
+                              minLength: 1
+                              description: Ensembl transcript identifier.
+                            transcript_position:
+                              type: number
+                              description: Position of this residue in the transcript
+                          required:
+                            - alignment_type
+                            - bfactor
+                            - chain
+                            - is_direct_structure
+                            - is_human
+                            - pdb_id
+                            - pdb_residuenumber
+                            - percentage_identity
+                            - surfaces_accessible
+                            - transcript_identifier
+                            - transcript_position
+                required:
+                  - transcript_identifier
+                  - values
               examples:
-                Example Response:
-                  value:
-                    system: human_v4.ENST00000373573
-                    values:
-                      '100':
-                        alignment_type: 3DM_SCOP
-                        bfactor: 50.3
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '100'
-                        percentage_identity: 1
-                        position: 100
-                        surfaces_accessible: 158.52
-                        system: human_v4.ENST00000373573
-                      '101':
-                        alignment_type: 3DM_PDBCLUSTER
-                        bfactor: 53.9
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '101'
-                        percentage_identity: 1
-                        position: 101
-                        surfaces_accessible: 14.18
-                        system: human_v4.ENST00000373573
-                      '102':
-                        alignment_type: 3DM_PDBCLUSTER
-                        bfactor: 46.4
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '102'
-                        percentage_identity: 1
-                        position: 102
-                        surfaces_accessible: 0
-                        system: human_v4.ENST00000373573
-                      '103':
-                        alignment_type: 3DM_PDBCLUSTER
-                        bfactor: 48.6
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '103'
-                        percentage_identity: 1
-                        position: 103
-                        surfaces_accessible: 29.83
-                        system: human_v4.ENST00000373573
-                      '104':
-                        alignment_type: 3DM_PDBCLUSTER
-                        bfactor: 55.2
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '104'
-                        percentage_identity: 1
-                        position: 104
-                        surfaces_accessible: 5.19
-                        system: human_v4.ENST00000373573
-                      '105':
-                        alignment_type: 3DM_PDBCLUSTER
-                        bfactor: 62.9
-                        is_direct_structure: true
-                        is_human: true
-                        molecule: A
-                        pdb_id: 4qa4
-                        pdb_residuenumber: '105'
-                        percentage_identity: 1
-                        position: 105
-                        surfaces_accessible: 36.21
-                        system: human_v4.ENST00000373573
+                Example Response: {}
         '404':
           description: No structure data is available for this transcript.
           content: {}

@@ -1434,21 +1434,27 @@ paths:
                 x-examples:
                   example-1:
                     - article_source: pubmed
-                      articleid: 10926844
-                      mutant: F
-                      position: 2
-                      score: 11.100000381469727
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: 709
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.G709C
                     - article_source: pubmed
-                      articleid: 25581683
-                      mutant: F
-                      position: 2
-                      score: 13.699999809265137
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: 1181
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.A1181G
                 items:
                   type: object
                   properties:
@@ -1456,64 +1462,79 @@ paths:
                       type: string
                       minLength: 1
                       description: 'The source of the article, for example "pubmed"'
-                    pubmed_id:
-                      type: number
-                      description: Numeric article identifier
-                    variant:
+                    gene_id:
                       type: string
                       minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                      description: NCBI gene identifier
+                    mutantnucleotide:
+                      type: string
+                      minLength: 1
+                      description: Nucleotide that results from the mutation.
+                    mutationstr:
+                      type: string
+                      minLength: 1
+                      description: String representing the mutation.
+                    nucleotide:
+                      type: string
+                      minLength: 1
+                      description: Wildtype nucleotide.
                     position:
                       type: number
-                      description: Position of the variant
+                      description: Position of the mutant.
+                    pubmed_id:
+                      type: number
+                      description: Pubmed identifier.
                     score:
                       type: number
-                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                      description: Score representing the likelihood that this article refers to this mutant (higher is better)
+                    taxonomy_id:
+                      type: number
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
                     url:
                       type: string
                       minLength: 1
-                      description: Direct URL to the article.
-                    wildtype:
+                      description: URL for the article.
+                    variant:
                       type: string
                       minLength: 1
-                      description: The wildtype amino acid at this position.
-                    mutationstr:
-                      type: string
-                      description: String representing the variant as extracted from the article.
-                    taxonomy_id:
-                      type: string
-                      description: NCBI Taxonomy ID indicating the organism related to this article.
-                    gene_id:
-                      type: string
-                      description: NCBI Identifier of the corresponding gene.
+                      description: DNA variant string.
                   required:
                     - article_source
-                    - pubmed_id
-                    - variant
+                    - gene_id
+                    - mutantnucleotide
+                    - mutationstr
+                    - nucleotide
                     - position
+                    - pubmed_id
                     - score
+                    - taxonomy_id
                     - url
                     - variant
-                    - wildtype
               examples:
                 Example:
                   value:
                     - article_source: pubmed
-                      articleid: 10926844
-                      mutant: F
-                      position: 2
-                      score: 11.100000381469727
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: 709
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.G709C
                     - article_source: pubmed
-                      articleid: 25581683
-                      mutant: F
-                      position: 2
-                      score: 13.699999809265137
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: 1181
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.A1181G
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature

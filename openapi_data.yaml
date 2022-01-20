@@ -1743,6 +1743,14 @@ paths:
                     gene_id:
                       type: string
                       description: NCBI Identifier of the corresponding gene.
+                    sequence_tyoe:
+                      type: string
+                      description: Where in the sequence this mutation was sourced from.
+                      enum:
+                        - CDS
+                        - UTR3
+                        - UTR5
+                        - splice_Site
                   required:
                     - article_source
                     - pubmed_id
@@ -1773,7 +1781,30 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint specifically returns literature outside the coding sequence. **Beta**
+      description: 'DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      parameters:
+        - schema:
+            type: number
+            example: score=10
+            default: 10
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: string
+            default: all
+            enum:
+              - all
+              - CDS
+              - UTR3
+              - UTR5
+              - UTRs
+              - splice_site
+          in: query
+          name: sequence_type
+          allowEmptyValue: true
+          description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
   '/transcripts/{transcript_id}/external':
     parameters:
       - schema:

@@ -1711,6 +1711,8 @@ paths:
                       taxonomy_id: 9606
                       url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
                       variant: c.A1181G
+        '400':
+          description: Invalid sequence_type supplied
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
@@ -1846,6 +1848,8 @@ paths:
                       url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
                       variant: E2F
                       wildtype: E
+        '400':
+          description: Invalid sequence_type supplied
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature

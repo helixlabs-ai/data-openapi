@@ -1498,6 +1498,15 @@ paths:
                       type: string
                       minLength: 1
                       description: DNA variant string.
+                    sequence_type:
+                      type: string
+                      enum:
+                        - CDS
+                        - UTR3
+                        - UTR5
+                        - splice_site
+                      description: |
+                        Where in the sequence this mutation was sourced from.
                   required:
                     - article_source
                     - gene_id
@@ -1535,10 +1544,41 @@ paths:
                       taxonomy_id: 9606
                       url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
                       variant: c.A1181G
+        '400':
+          description: Invalid sequence_type supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value: {}
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint specifically returns literature outside the coding sequence. **Beta**
+      description: 'DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. **Beta**'
+      parameters:
+        - schema:
+            type: number
+            default: 10
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: string
+            enum:
+              - CDS
+              - UTR3
+              - UTR5
+              - UTRs
+              - splice_site
+              - all
+          in: query
+          description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
+          name: sequence_type
+          allowEmptyValue: true
   '/genename/{gene_name}/dna':
     parameters:
       - schema:
@@ -1628,6 +1668,14 @@ paths:
                       type: string
                       minLength: 1
                       description: DNA variant string.
+                    sequence_type:
+                      type: string
+                      description: Where in the sequence this mutation was sourced from.
+                      enum:
+                        - CDS
+                        - UTR3
+                        - UTR5
+                        - splice_site
                   required:
                     - article_source
                     - gene_id
@@ -1666,7 +1714,27 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: DNA literature related to a given gene. Access based on gene name. This endpoint specifically returns literature outside the coding sequence. **Beta**
+      description: 'DNA literature related to a given gene. Access based on gene name. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      parameters:
+        - schema:
+            type: number
+            default: 10
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: string
+            enum:
+              - CDS
+              - UTR3
+              - UTR5
+              - UTRs
+              - splice_site
+              - all
+          in: query
+          description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
+          name: sequence_type
   '/transcripts/{transcript_id}/dna':
     parameters:
       - schema:
@@ -1743,7 +1811,7 @@ paths:
                     gene_id:
                       type: string
                       description: NCBI Identifier of the corresponding gene.
-                    sequence_type:
+                    sequence_tyoe:
                       type: string
                       description: Where in the sequence this mutation was sourced from.
                       enum:
@@ -1781,7 +1849,7 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: 'DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
       parameters:
         - schema:
             type: number

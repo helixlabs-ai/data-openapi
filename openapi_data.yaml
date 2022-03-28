@@ -1833,21 +1833,29 @@ paths:
                 Example:
                   value:
                     - article_source: pubmed
-                      articleid: 10926844
-                      mutant: F
-                      position: 2
-                      score: 11.100000381469727
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: 709
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.G709C
+                      sequence_type: CDS
                     - article_source: pubmed
-                      articleid: 25581683
-                      mutant: F
-                      position: 2
-                      score: 13.699999809265137
-                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
-                      variant: E2F
-                      wildtype: E
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: 1181
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.A1181G
+                      sequence_type: CDS
         '400':
           description: Invalid sequence_type supplied
         '404':

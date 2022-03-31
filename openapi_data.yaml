@@ -1505,12 +1505,12 @@ paths:
                         Where in the sequence this mutation was sourced from.
                     genomic_coordinates:
                       type: string
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_site
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
                   required:
                     - article_source
                     - gene_id
@@ -1679,12 +1679,12 @@ paths:
                         - splice_site
                     genomic_coordinates:
                       type: string
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_site
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
                   required:
                     - article_source
                     - gene_id
@@ -1834,11 +1834,11 @@ paths:
                     genomic_coordinates:
                       type: string
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_Site
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
                   required:
                     - article_source
                     - pubmed_id

@@ -1566,7 +1566,7 @@ paths:
       parameters:
         - schema:
             type: number
-            default: 10
+            default: 4.5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1730,7 +1730,7 @@ paths:
       parameters:
         - schema:
             type: number
-            default: 10
+            default: 4.5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1796,10 +1796,6 @@ paths:
                     pubmed_id:
                       type: number
                       description: Numeric article identifier
-                    variant:
-                      type: string
-                      minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
                     position:
                       type: number
                       description: Position of the variant
@@ -1842,7 +1838,6 @@ paths:
                   required:
                     - article_source
                     - pubmed_id
-                    - variant
                     - position
                     - score
                     - url
@@ -1884,7 +1879,7 @@ paths:
         - schema:
             type: number
             example: score=10
-            default: 10
+            default: 4.5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1952,10 +1947,6 @@ paths:
                     pubmed_id:
                       type: number
                       description: Numeric article identifier
-                    variant:
-                      type: string
-                      minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
                     position:
                       type: number
                       description: Position of the variant
@@ -1998,7 +1989,6 @@ paths:
                   required:
                     - article_source
                     - pubmed_id
-                    - variant
                     - position
                     - score
                     - url
@@ -2043,7 +2033,7 @@ paths:
         - schema:
             type: number
             example: score=10
-            default: 10
+            default: 4.5
           in: query
           name: score
           description: Minimum score required for a result to be returned.

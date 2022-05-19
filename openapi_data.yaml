@@ -2054,6 +2054,165 @@ paths:
           name: sequence_type
           allowEmptyValue: true
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
+  '/keyword/{keyword}/dna':
+    parameters:
+      - schema:
+          type: string
+        name: keyword
+        in: path
+        required: true
+    get:
+      summary: DNA literature related to a given keyword
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    pubmed_id:
+                      type: number
+                      description: Numeric article identifier
+                    variant:
+                      type: string
+                      minLength: 1
+                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                    position:
+                      type: number
+                      description: Position of the variant
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    wildtype:
+                      type: string
+                      minLength: 1
+                      description: The wildtype amino acid at this position.
+                    mutationstr:
+                      type: string
+                      description: String representing the variant as extracted from the article.
+                    taxonomy_id:
+                      type: string
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    gene_id:
+                      type: string
+                      description: NCBI Identifier of the corresponding gene.
+                    sequence_type:
+                      type: string
+                      description: Where in the sequence this mutation was sourced from.
+                      enum:
+                        - CDS
+                        - UTR3
+                        - UTR5
+                        - splice_Site
+                    genomic_coordinates:
+                      type: string
+                      description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
+                  required:
+                    - article_source
+                    - pubmed_id
+                    - variant
+                    - position
+                    - score
+                    - url
+                    - wildtype
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: 709
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      sequence_type: CDS
+                      genomic_coordinates: '1p34.1::45508807'
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: 1181
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      sequence_type: CDS
+                      genomic_coordinates: '1p34.1::45508807'
+        '400':
+          description: Invalid sequence_type supplied
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: |-
+        DNA literature related to a given keyword. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations.
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 100 results. ?start=100 will return result 100-200, etc. **Beta**
+      parameters:
+        - schema:
+            type: number
+            example: score=10
+            default: 10
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: string
+            default: all
+            enum:
+              - all
+              - CDS
+              - UTR3
+              - UTR5
+              - UTRs
+              - splice_site
+          in: query
+          name: sequence_type
+          allowEmptyValue: true
+          description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
         - schema:
             type: number
           in: query

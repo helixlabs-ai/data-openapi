@@ -1796,10 +1796,6 @@ paths:
                     pubmed_id:
                       type: number
                       description: Numeric article identifier
-                    variant:
-                      type: string
-                      minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
                     position:
                       type: number
                       description: Position of the variant
@@ -1952,10 +1948,6 @@ paths:
                     pubmed_id:
                       type: number
                       description: Numeric article identifier
-                    variant:
-                      type: string
-                      minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
                     position:
                       type: number
                       description: Position of the variant

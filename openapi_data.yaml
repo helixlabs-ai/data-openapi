@@ -969,6 +969,287 @@ paths:
       security:
         - structure_api_sec:
             - 'read:conservation_data'
+  '/genename/{gene_name}/all':
+    parameters:
+      - schema:
+          type: string
+        name: gene_name
+        in: path
+        required: true
+    get:
+      summary: All literature related to a given gene by name
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    dna:
+                      - article_source: pubmed
+                        gene_id: NM_007297.4
+                        genomic_coordinates: '17q21.31::43104187'
+                        keywords:
+                          - diabetes mellitus
+                          - hypothyroidism
+                          - opa1
+                          - encephalopathy
+                          - chronic progressive external ophthalmoplegia
+                          - progressive external ophthalmoplegia
+                          - neuropathy
+                          - pph2
+                          - breast cancer
+                          - cand
+                          - myopia
+                          - image
+                          - periodic fever
+                          - alexander
+                          - hema
+                          - short
+                          - cardiac conduction
+                          - wfs1
+                          - neuromuscular
+                        mutantnucleotide: Del
+                        mutationstr: C235DelC
+                        nucleotide: C
+                        position: 235
+                        pubmed_id: 31348995
+                        score: 15.819999694824219
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
+                      - article_source: pubmed
+                        gene_id: NM_007294.4
+                        genomic_coordinates: '17q21.31::43106487'
+                        keywords:
+                          - ovarian cancer
+                          - leukemia
+                          - hema
+                          - breast cancer
+                          - escr
+                          - cervical cancer
+                          - short
+                          - still
+                          - mps is
+                          - soft
+                        mutantnucleotide: G
+                        mutationstr: T181G
+                        nucleotide: T
+                        position: 181
+                        pubmed_id: 26306726
+                        score: 34.33000183105469
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
+                    protein:
+                      - article_source: pubmed
+                        articleid: 16267036
+                        keywords: null
+                        mutant: R
+                        position: 1
+                        score: 350.5333251953125
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
+                        variant: M1R
+                        wildtype: M
+                      - article_source: pubmed
+                        articleid: 22753008
+                        keywords: null
+                        mutant: I
+                        position: 1
+                        score: 142.13333129882812
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
+                        variant: M1I
+                        wildtype: M
+                properties:
+                  dna:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        article_source:
+                          type: string
+                          description: 'The source of the article, for example "pubmed"'
+                        gene_id:
+                          type: string
+                          description: NCBI Identifier of the corresponding gene.
+                        genomic_coordinates:
+                          type: string
+                          description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                        keywords:
+                          description: A list of keywords related to this variant.
+                          type: array
+                          nullable: true
+                          items:
+                            type: string
+                        mutantnucleotide:
+                          type: string
+                          description: Nucleotide that was the result of the mutation
+                        mutationstr:
+                          type: string
+                          description: String representing the variant as extracted from the article.
+                        nucleotide:
+                          type: string
+                          description: The wildtype nucleotide at this position.
+                        position:
+                          type: integer
+                          description: Position of the variant
+                        pubmed_id:
+                          type: integer
+                          description: Numeric article identifier
+                        score:
+                          type: number
+                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                        sequence_type:
+                          type: string
+                          description: Where in the sequence this mutation was sourced from.
+                          enum:
+                            - CDS
+                            - UTR3
+                            - UTR5
+                            - intronic
+                        taxonomy_id:
+                          type: integer
+                          description: NCBI Taxonomy ID indicating the organism related to this article.
+                        url:
+                          type: string
+                          description: Direct URL to the article.
+                  protein:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        article_source:
+                          type: string
+                          description: 'The source of the article, for example "pubmed"'
+                        articleid:
+                          type: integer
+                          description: Numeric article identifier
+                        keywords:
+                          type: array
+                          nullable: true
+                          items:
+                            type: string
+                        mutant:
+                          type: string
+                          description: Mutant amino acid
+                        position:
+                          type: integer
+                          description: Position of the variant
+                        score:
+                          type: number
+                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                        taxonomy_id:
+                          type: integer
+                          description: NCBI Taxonomy ID indicating the organism related to this article.
+                        url:
+                          type: string
+                          description: Direct URL to the article.
+                        variant:
+                          type: string
+                          description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                        wildtype:
+                          type: string
+                          description: The wildtype amino acid at this position.
+              examples:
+                Example:
+                  value:
+                    dna:
+                      - article_source: pubmed
+                        gene_id: NM_007297.4
+                        genomic_coordinates: '17q21.31::43104187'
+                        keywords:
+                          - diabetes mellitus
+                          - hypothyroidism
+                          - opa1
+                          - encephalopathy
+                          - chronic progressive external ophthalmoplegia
+                          - progressive external ophthalmoplegia
+                          - neuropathy
+                          - pph2
+                          - breast cancer
+                          - cand
+                          - myopia
+                          - image
+                          - periodic fever
+                          - alexander
+                          - hema
+                          - short
+                          - cardiac conduction
+                          - wfs1
+                          - neuromuscular
+                        mutantnucleotide: Del
+                        mutationstr: C235DelC
+                        nucleotide: C
+                        position: 235
+                        pubmed_id: 31348995
+                        score: 15.819999694824219
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
+                      - article_source: pubmed
+                        gene_id: NM_007294.4
+                        genomic_coordinates: '17q21.31::43106487'
+                        keywords:
+                          - ovarian cancer
+                          - leukemia
+                          - hema
+                          - breast cancer
+                          - escr
+                          - cervical cancer
+                          - short
+                          - still
+                          - mps is
+                          - soft
+                        mutantnucleotide: G
+                        mutationstr: T181G
+                        nucleotide: T
+                        position: 181
+                        pubmed_id: 26306726
+                        score: 34.33000183105469
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
+                    protein:
+                      - article_source: pubmed
+                        articleid: 16267036
+                        keywords: null
+                        mutant: R
+                        position: 1
+                        score: 350.5333251953125
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
+                        variant: M1R
+                        wildtype: M
+                      - article_source: pubmed
+                        articleid: 22753008
+                        keywords: null
+                        mutant: I
+                        position: 1
+                        score: 142.13333129882812
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
+                        variant: M1I
+                        wildtype: M
+        '400':
+          description: Invalid sequence_type supplied
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. **Beta**'
+      parameters:
+        - schema:
+            type: number
+            default: 4.5
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
   '/vep/{identifier}/literature':
     parameters:
       - schema:
@@ -1747,287 +2028,6 @@ paths:
           in: query
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
           name: sequence_type
-  '/genename/{gene_name}/all':
-    parameters:
-      - schema:
-          type: string
-        name: gene_name
-        in: path
-        required: true
-    get:
-      summary: All literature related to a given gene by name
-      tags:
-        - Literature
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples:
-                  example-1:
-                    dna:
-                      - article_source: pubmed
-                        gene_id: NM_007297.4
-                        genomic_coordinates: '17q21.31::43104187'
-                        keywords:
-                          - diabetes mellitus
-                          - hypothyroidism
-                          - opa1
-                          - encephalopathy
-                          - chronic progressive external ophthalmoplegia
-                          - progressive external ophthalmoplegia
-                          - neuropathy
-                          - pph2
-                          - breast cancer
-                          - cand
-                          - myopia
-                          - image
-                          - periodic fever
-                          - alexander
-                          - hema
-                          - short
-                          - cardiac conduction
-                          - wfs1
-                          - neuromuscular
-                        mutantnucleotide: Del
-                        mutationstr: C235DelC
-                        nucleotide: C
-                        position: 235
-                        pubmed_id: 31348995
-                        score: 15.819999694824219
-                        sequence_type: CDS
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
-                      - article_source: pubmed
-                        gene_id: NM_007294.4
-                        genomic_coordinates: '17q21.31::43106487'
-                        keywords:
-                          - ovarian cancer
-                          - leukemia
-                          - hema
-                          - breast cancer
-                          - escr
-                          - cervical cancer
-                          - short
-                          - still
-                          - mps is
-                          - soft
-                        mutantnucleotide: G
-                        mutationstr: T181G
-                        nucleotide: T
-                        position: 181
-                        pubmed_id: 26306726
-                        score: 34.33000183105469
-                        sequence_type: CDS
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
-                    protein:
-                      - article_source: pubmed
-                        articleid: 16267036
-                        keywords: null
-                        mutant: R
-                        position: 1
-                        score: 350.5333251953125
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
-                        variant: M1R
-                        wildtype: M
-                      - article_source: pubmed
-                        articleid: 22753008
-                        keywords: null
-                        mutant: I
-                        position: 1
-                        score: 142.13333129882812
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
-                        variant: M1I
-                        wildtype: M
-                properties:
-                  dna:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        article_source:
-                          type: string
-                          description: 'The source of the article, for example "pubmed"'
-                        gene_id:
-                          type: string
-                          description: NCBI Identifier of the corresponding gene.
-                        genomic_coordinates:
-                          type: string
-                          description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
-                        keywords:
-                          description: A list of keywords related to this variant.
-                          type: array
-                          nullable: true
-                          items:
-                            type: string
-                        mutantnucleotide:
-                          type: string
-                          description: Nucleotide that was the result of the mutation
-                        mutationstr:
-                          type: string
-                          description: String representing the variant as extracted from the article.
-                        nucleotide:
-                          type: string
-                          description: The wildtype nucleotide at this position.
-                        position:
-                          type: integer
-                          description: Position of the variant
-                        pubmed_id:
-                          type: integer
-                          description: Numeric article identifier
-                        score:
-                          type: number
-                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
-                        sequence_type:
-                          type: string
-                          description: Where in the sequence this mutation was sourced from.
-                          enum:
-                            - CDS
-                            - UTR3
-                            - UTR5
-                            - intronic
-                        taxonomy_id:
-                          type: integer
-                          description: NCBI Taxonomy ID indicating the organism related to this article.
-                        url:
-                          type: string
-                          description: Direct URL to the article.
-                  protein:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        article_source:
-                          type: string
-                          description: 'The source of the article, for example "pubmed"'
-                        articleid:
-                          type: integer
-                          description: Numeric article identifier
-                        keywords:
-                          type: array
-                          nullable: true
-                          items:
-                            type: string
-                        mutant:
-                          type: string
-                          description: Mutant amino acid
-                        position:
-                          type: integer
-                          description: Position of the variant
-                        score:
-                          type: number
-                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
-                        taxonomy_id:
-                          type: integer
-                          description: NCBI Taxonomy ID indicating the organism related to this article.
-                        url:
-                          type: string
-                          description: Direct URL to the article.
-                        variant:
-                          type: string
-                          description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
-                        wildtype:
-                          type: string
-                          description: The wildtype amino acid at this position.
-              examples:
-                Example:
-                  value:
-                    dna:
-                      - article_source: pubmed
-                        gene_id: NM_007297.4
-                        genomic_coordinates: '17q21.31::43104187'
-                        keywords:
-                          - diabetes mellitus
-                          - hypothyroidism
-                          - opa1
-                          - encephalopathy
-                          - chronic progressive external ophthalmoplegia
-                          - progressive external ophthalmoplegia
-                          - neuropathy
-                          - pph2
-                          - breast cancer
-                          - cand
-                          - myopia
-                          - image
-                          - periodic fever
-                          - alexander
-                          - hema
-                          - short
-                          - cardiac conduction
-                          - wfs1
-                          - neuromuscular
-                        mutantnucleotide: Del
-                        mutationstr: C235DelC
-                        nucleotide: C
-                        position: 235
-                        pubmed_id: 31348995
-                        score: 15.819999694824219
-                        sequence_type: CDS
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
-                      - article_source: pubmed
-                        gene_id: NM_007294.4
-                        genomic_coordinates: '17q21.31::43106487'
-                        keywords:
-                          - ovarian cancer
-                          - leukemia
-                          - hema
-                          - breast cancer
-                          - escr
-                          - cervical cancer
-                          - short
-                          - still
-                          - mps is
-                          - soft
-                        mutantnucleotide: G
-                        mutationstr: T181G
-                        nucleotide: T
-                        position: 181
-                        pubmed_id: 26306726
-                        score: 34.33000183105469
-                        sequence_type: CDS
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
-                    protein:
-                      - article_source: pubmed
-                        articleid: 16267036
-                        keywords: null
-                        mutant: R
-                        position: 1
-                        score: 350.5333251953125
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
-                        variant: M1R
-                        wildtype: M
-                      - article_source: pubmed
-                        articleid: 22753008
-                        keywords: null
-                        mutant: I
-                        position: 1
-                        score: 142.13333129882812
-                        taxonomy_id: 9606
-                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
-                        variant: M1I
-                        wildtype: M
-        '400':
-          description: Invalid sequence_type supplied
-        '404':
-          description: Transcript not found in database.
-      operationId: get-transcripts-transcript_id-literature
-      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. **Beta**'
-      parameters:
-        - schema:
-            type: number
-            default: 4.5
-          in: query
-          name: score
-          description: Minimum score required for a result to be returned.
-          allowEmptyValue: true
   '/transcripts/{transcript_id}/dna':
     parameters:
       - schema:

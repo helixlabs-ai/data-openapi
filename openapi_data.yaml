@@ -1676,7 +1676,7 @@ paths:
                         - CDS
                         - UTR3
                         - UTR5
-                        - splice_site
+                        - intronic
                     genomic_coordinates:
                       type: string
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
@@ -2087,15 +2087,15 @@ paths:
                       type: string
                       minLength: 1
                       description: Direct URL to the article.
-                    wildtype:
+                    nucleotide:
                       type: string
                       minLength: 1
-                      description: The wildtype amino acid at this position.
+                      description: The wildtype nucleotide this position.
                     mutationstr:
                       type: string
                       description: String representing the variant as extracted from the article.
                     taxonomy_id:
-                      type: string
+                      type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
                     gene_id:
                       type: string
@@ -2107,7 +2107,7 @@ paths:
                         - CDS
                         - UTR3
                         - UTR5
-                        - splice_Site
+                        - intronic
                     genomic_coordinates:
                       type: string
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
@@ -2116,13 +2116,17 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    mutantnucleotide:
+                      type: string
+                      description: Nucleotide that was the result of the mutation
                   required:
                     - article_source
                     - pubmed_id
                     - position
                     - score
                     - url
-                    - wildtype
+                    - nucleotide
+                    - mutantnucleotide
               examples:
                 Example:
                   value:
@@ -2246,7 +2250,7 @@ paths:
                       type: string
                       description: String representing the variant as extracted from the article.
                     taxonomy_id:
-                      type: string
+                      type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
                     gene_id:
                       type: string
@@ -2258,7 +2262,7 @@ paths:
                         - CDS
                         - UTR3
                         - UTR5
-                        - splice_Site
+                        - intronic
                     genomic_coordinates:
                       type: string
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
@@ -2267,6 +2271,9 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    mutantnucleotide:
+                      type: string
+                      description: Nucleotide that was the result of the mutation
                   required:
                     - article_source
                     - pubmed_id

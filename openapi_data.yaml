@@ -1760,8 +1760,8 @@ paths:
                       minLength: 1
                       description: Wildtype nucleotide.
                     position:
-                      type: number
-                      description: Position of the mutant.
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     pubmed_id:
                       type: number
                       description: Pubmed identifier.
@@ -1859,8 +1859,8 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
               - all
+              - intronic
           in: query
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
           name: sequence_type
@@ -1935,8 +1935,8 @@ paths:
                       minLength: 1
                       description: Wildtype nucleotide.
                     position:
-                      type: number
-                      description: Position of the mutant.
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     pubmed_id:
                       type: number
                       description: Pubmed identifier.
@@ -2023,8 +2023,8 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
               - all
+              - intronic
           in: query
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
           name: sequence_type
@@ -2078,8 +2078,8 @@ paths:
                       type: number
                       description: Numeric article identifier
                     position:
-                      type: number
-                      description: Position of the variant
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     score:
                       type: number
                       description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
@@ -2178,7 +2178,7 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
+              - intronic
           in: query
           name: sequence_type
           allowEmptyValue: true
@@ -2233,8 +2233,8 @@ paths:
                       type: number
                       description: Numeric article identifier
                     position:
-                      type: number
-                      description: Position of the variant
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     score:
                       type: number
                       description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
@@ -2335,7 +2335,7 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
+              - intronic
           in: query
           name: sequence_type
           allowEmptyValue: true

@@ -1754,7 +1754,7 @@ paths:
                     mutationstr:
                       type: string
                       minLength: 1
-                      description: String representing the mutation.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     nucleotide:
                       type: string
                       minLength: 1
@@ -1925,7 +1925,7 @@ paths:
                     mutantnucleotide:
                       type: string
                       minLength: 1
-                      description: Nucleotide that results from the mutation.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     mutationstr:
                       type: string
                       minLength: 1
@@ -2093,7 +2093,7 @@ paths:
                       description: The wildtype nucleotide this position.
                     mutationstr:
                       type: string
-                      description: String representing the variant as extracted from the article.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     taxonomy_id:
                       type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
@@ -2248,7 +2248,7 @@ paths:
                       description: The wildtype amino acid at this position.
                     mutationstr:
                       type: string
-                      description: String representing the variant as extracted from the article.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     taxonomy_id:
                       type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.

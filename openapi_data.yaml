@@ -29,7 +29,7 @@ info:
 
     We recommend the requests library for Python for ease of use.
 
-    ```
+    ```python
     data = requests.post(
         "https://eggwhite.eu.auth0.com/oauth/token",
         headers={"Content-Type": "application/json"},

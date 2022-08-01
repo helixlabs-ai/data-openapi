@@ -1264,7 +1264,7 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. **Beta**'
+      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. This endpoint is paginated, a maximum of 1000 results is shown. **Beta**'
       parameters:
         - schema:
             type: number
@@ -1279,6 +1279,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/vep/{identifier}/literature':
     parameters:
       - schema:
@@ -1900,7 +1905,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -1928,6 +1936,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/genename/{gene_name}/dna':
     parameters:
       - schema:
@@ -2070,7 +2083,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given gene. Access based on gene name. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given gene. Access based on gene name. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2097,6 +2113,11 @@ paths:
           in: query
           name: all_organisms
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/transcripts/{transcript_id}/dna':
     parameters:
       - schema:
@@ -2228,7 +2249,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2258,6 +2282,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/keyword/{keyword}/dna':
     parameters:
       - schema:
@@ -2391,7 +2420,7 @@ paths:
       description: |-
         DNA literature related to a given keyword. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations.
 
-        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 100 results. ?start=100 will return result 100-200, etc. **Beta**
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2416,10 +2445,10 @@ paths:
           allowEmptyValue: true
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
         - schema:
-            type: number
+            type: integer
           in: query
           name: start
-          description: The number of records to skip
+          description: Pagination offset.
         - schema:
             type: boolean
             default: false

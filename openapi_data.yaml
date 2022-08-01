@@ -14,7 +14,7 @@ info:
 
     Retrieving the access token for interaction with our API can be achieved by sending a request to the Auth0 authentication servers. Tokens have a lifespan of 24 hours. You need to re-acquire a new one before the old one runs out in order to keep using the API without interruption.
 
-    ```
+    ```bash
     curl --request POST \
       --url https://eggwhite.eu.auth0.com/oauth/token \
       --header 'content-type: application/json' \
@@ -23,21 +23,44 @@ info:
 
     Returns the following JSON response:
 
-    ```
+    ```json
     { "access_token": "<access_token>", "expires_in": 86400, "token_type": "Bearer" }
     ```
 
-    We recommend the requests library for Python for ease of use.
+    We recommend the `requests` library for Python for ease of use.
+
+    ```python
+    data = requests.post(
+        "https://eggwhite.eu.auth0.com/oauth/token",
+        headers={"Content-Type": "application/json"},
+        json={
+            "client_id": "<client_id>",
+            "client_secret": "<client_secret>",
+            "audience":"structure.helixlabs.ai",
+            "grant_type":"client_credentials"
+        }
+    )
+    access_token = data.json()["access_token"]
+    ```
 
     API Usage
     ---------
 
-    When you have acquired an API token, you need to include it in the Authorization header, preceded by the `Bearer` keyword.
+    When you have acquired an API token, you need to include it in the Authorization header:
 
-    ```
+    ```bash
     curl --request GET \
       --url https://data.helixlabs.ai/transcripts \
-      --header 'Authorization: Bearer <access_token>'
+      --header 'Authorization: <access_token>'
+    ```
+
+    Or you can use `requests`:
+
+    ```python
+    r = requests.get(
+        "https://data.helixlabs.ai/transcripts",
+        headers={"Authorization": access_token},
+    )
     ```
   termsOfService: 'https://www.bio-prodict.com/static/pdf/general-terms-and-conditions-V20191130-bio-prodict.pdf'
   contact:
@@ -969,6 +992,293 @@ paths:
       security:
         - structure_api_sec:
             - 'read:conservation_data'
+  '/genename/{gene_name}/all':
+    parameters:
+      - schema:
+          type: string
+        name: gene_name
+        in: path
+        required: true
+    get:
+      summary: All literature related to a given gene by name
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    dna:
+                      - article_source: pubmed
+                        gene_id: NM_007297.4
+                        genomic_coordinates: '17q21.31::43104187'
+                        keywords:
+                          - diabetes mellitus
+                          - hypothyroidism
+                          - opa1
+                          - encephalopathy
+                          - chronic progressive external ophthalmoplegia
+                          - progressive external ophthalmoplegia
+                          - neuropathy
+                          - pph2
+                          - breast cancer
+                          - cand
+                          - myopia
+                          - image
+                          - periodic fever
+                          - alexander
+                          - hema
+                          - short
+                          - cardiac conduction
+                          - wfs1
+                          - neuromuscular
+                        mutantnucleotide: Del
+                        mutationstr: C235DelC
+                        nucleotide: C
+                        position: 235
+                        pubmed_id: 31348995
+                        score: 15.819999694824219
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
+                      - article_source: pubmed
+                        gene_id: NM_007294.4
+                        genomic_coordinates: '17q21.31::43106487'
+                        keywords:
+                          - ovarian cancer
+                          - leukemia
+                          - hema
+                          - breast cancer
+                          - escr
+                          - cervical cancer
+                          - short
+                          - still
+                          - mps is
+                          - soft
+                        mutantnucleotide: G
+                        mutationstr: T181G
+                        nucleotide: T
+                        position: 181
+                        pubmed_id: 26306726
+                        score: 34.33000183105469
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
+                    protein:
+                      - article_source: pubmed
+                        articleid: 16267036
+                        keywords: null
+                        mutant: R
+                        position: 1
+                        score: 350.5333251953125
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
+                        variant: M1R
+                        wildtype: M
+                      - article_source: pubmed
+                        articleid: 22753008
+                        keywords: null
+                        mutant: I
+                        position: 1
+                        score: 142.13333129882812
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
+                        variant: M1I
+                        wildtype: M
+                properties:
+                  dna:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        article_source:
+                          type: string
+                          description: 'The source of the article, for example "pubmed"'
+                        gene_id:
+                          type: string
+                          description: NCBI Identifier of the corresponding gene.
+                        genomic_coordinates:
+                          type: string
+                          description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                        keywords:
+                          description: A list of keywords related to this variant.
+                          type: array
+                          nullable: true
+                          items:
+                            type: string
+                        mutantnucleotide:
+                          type: string
+                          description: Nucleotide that was the result of the mutation
+                        mutationstr:
+                          type: string
+                          description: String representing the variant as extracted from the article.
+                        nucleotide:
+                          type: string
+                          description: The wildtype nucleotide at this position.
+                        position:
+                          type: integer
+                          description: Position of the variant
+                        pubmed_id:
+                          type: integer
+                          description: Numeric article identifier
+                        score:
+                          type: number
+                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                        sequence_type:
+                          type: string
+                          description: Where in the sequence this mutation was sourced from.
+                          enum:
+                            - CDS
+                            - UTR3
+                            - UTR5
+                            - intronic
+                        taxonomy_id:
+                          type: integer
+                          description: NCBI Taxonomy ID indicating the organism related to this article.
+                        url:
+                          type: string
+                          description: Direct URL to the article.
+                  protein:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        article_source:
+                          type: string
+                          description: 'The source of the article, for example "pubmed"'
+                        articleid:
+                          type: integer
+                          description: Numeric article identifier
+                        keywords:
+                          type: array
+                          nullable: true
+                          items:
+                            type: string
+                        mutant:
+                          type: string
+                          description: Mutant amino acid
+                        position:
+                          type: integer
+                          description: Position of the variant
+                        score:
+                          type: number
+                          description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                        taxonomy_id:
+                          type: integer
+                          description: NCBI Taxonomy ID indicating the organism related to this article.
+                        url:
+                          type: string
+                          description: Direct URL to the article.
+                        variant:
+                          type: string
+                          description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
+                        wildtype:
+                          type: string
+                          description: The wildtype amino acid at this position.
+              examples:
+                Example:
+                  value:
+                    dna:
+                      - article_source: pubmed
+                        gene_id: NM_007297.4
+                        genomic_coordinates: '17q21.31::43104187'
+                        keywords:
+                          - diabetes mellitus
+                          - hypothyroidism
+                          - opa1
+                          - encephalopathy
+                          - chronic progressive external ophthalmoplegia
+                          - progressive external ophthalmoplegia
+                          - neuropathy
+                          - pph2
+                          - breast cancer
+                          - cand
+                          - myopia
+                          - image
+                          - periodic fever
+                          - alexander
+                          - hema
+                          - short
+                          - cardiac conduction
+                          - wfs1
+                          - neuromuscular
+                        mutantnucleotide: Del
+                        mutationstr: C235DelC
+                        nucleotide: C
+                        position: 235
+                        pubmed_id: 31348995
+                        score: 15.819999694824219
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/31348995/'
+                      - article_source: pubmed
+                        gene_id: NM_007294.4
+                        genomic_coordinates: '17q21.31::43106487'
+                        keywords:
+                          - ovarian cancer
+                          - leukemia
+                          - hema
+                          - breast cancer
+                          - escr
+                          - cervical cancer
+                          - short
+                          - still
+                          - mps is
+                          - soft
+                        mutantnucleotide: G
+                        mutationstr: T181G
+                        nucleotide: T
+                        position: 181
+                        pubmed_id: 26306726
+                        score: 34.33000183105469
+                        sequence_type: CDS
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/26306726/'
+                    protein:
+                      - article_source: pubmed
+                        articleid: 16267036
+                        keywords: null
+                        mutant: R
+                        position: 1
+                        score: 350.5333251953125
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/16267036/'
+                        variant: M1R
+                        wildtype: M
+                      - article_source: pubmed
+                        articleid: 22753008
+                        keywords: null
+                        mutant: I
+                        position: 1
+                        score: 142.13333129882812
+                        taxonomy_id: 9606
+                        url: 'https://pubmed.ncbi.nlm.nih.gov/22753008/'
+                        variant: M1I
+                        wildtype: M
+        '400':
+          description: Invalid sequence_type supplied
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. **Beta**'
+      parameters:
+        - schema:
+            type: number
+            default: 5
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
+          name: all_organisms
   '/vep/{identifier}/literature':
     parameters:
       - schema:
@@ -1080,6 +1390,13 @@ paths:
         - RSID: i.e. `rs145160881`
         - HGVSP: i.e. `ENSP00000264012.4:p.Val447Ile` or `NP_001304124.1:p.Val447Ile` or `XP_011521102.1:p.Val447Ile`
         - HGVSC: i.e. `ENST00000264012.9:c.1339G>A` or `NM_001317195.3:c.1339G>A` or `XM_011522800.3:c.1339G>A`
+      parameters:
+        - schema:
+            type: string
+            default: '5'
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
   '/transcripts/{transcript_id}/literature':
     parameters:
       - schema:
@@ -1184,6 +1501,13 @@ paths:
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
       description: 'Returns all relevant literature for every position in a transcript. '
+      parameters:
+        - schema:
+            type: string
+            default: '5'
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
   '/transcripts/{transcript_id}/{position}literature':
     parameters:
       - schema:
@@ -1294,6 +1618,13 @@ paths:
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
       description: 'Returns all relevant literature for a position in a transcript. '
+      parameters:
+        - schema:
+            type: string
+            default: '5'
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
   '/transcripts/{transcript_id}/{position}/{mutant}/literature':
     parameters:
       - schema:
@@ -1410,6 +1741,13 @@ paths:
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
       description: 'Returns all relevant literature for a variant in a transcript. '
+      parameters:
+        - schema:
+            type: string
+            default: '5'
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
   '/gene/{gene_id}/dna':
     parameters:
       - schema:
@@ -1473,14 +1811,14 @@ paths:
                     mutationstr:
                       type: string
                       minLength: 1
-                      description: String representing the mutation.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     nucleotide:
                       type: string
                       minLength: 1
                       description: Wildtype nucleotide.
                     position:
-                      type: number
-                      description: Position of the mutant.
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     pubmed_id:
                       type: number
                       description: Pubmed identifier.
@@ -1505,12 +1843,12 @@ paths:
                         Where in the sequence this mutation was sourced from.
                     genomic_coordinates:
                       type: string
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_site
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
                   required:
                     - article_source
                     - gene_id
@@ -1530,7 +1868,7 @@ paths:
                       mutantnucleotide: C
                       mutationstr: G709-1C
                       nucleotide: G
-                      position: 709
+                      position: '709'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1542,7 +1880,7 @@ paths:
                       mutantnucleotide: G
                       mutationstr: A1181-2G
                       nucleotide: A
-                      position: 1181
+                      position: '1181'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1566,7 +1904,7 @@ paths:
       parameters:
         - schema:
             type: number
-            default: 10
+            default: 5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1578,12 +1916,18 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
               - all
+              - intronic
           in: query
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
           name: sequence_type
           allowEmptyValue: true
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
+          name: all_organisms
   '/genename/{gene_name}/dna':
     parameters:
       - schema:
@@ -1644,7 +1988,7 @@ paths:
                     mutantnucleotide:
                       type: string
                       minLength: 1
-                      description: Nucleotide that results from the mutation.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     mutationstr:
                       type: string
                       minLength: 1
@@ -1654,8 +1998,8 @@ paths:
                       minLength: 1
                       description: Wildtype nucleotide.
                     position:
-                      type: number
-                      description: Position of the mutant.
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     pubmed_id:
                       type: number
                       description: Pubmed identifier.
@@ -1676,15 +2020,15 @@ paths:
                         - CDS
                         - UTR3
                         - UTR5
-                        - splice_site
+                        - intronic
                     genomic_coordinates:
                       type: string
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_site
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
                   required:
                     - article_source
                     - gene_id
@@ -1702,7 +2046,7 @@ paths:
                       mutantnucleotide: C
                       mutationstr: G709-1C
                       nucleotide: G
-                      position: 709
+                      position: '709'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1714,7 +2058,7 @@ paths:
                       mutantnucleotide: G
                       mutationstr: A1181-2G
                       nucleotide: A
-                      position: 1181
+                      position: '1181'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1730,7 +2074,7 @@ paths:
       parameters:
         - schema:
             type: number
-            default: 10
+            default: 5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1742,11 +2086,17 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
               - all
+              - intronic
           in: query
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
           name: sequence_type
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          name: all_organisms
+          description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
   '/transcripts/{transcript_id}/dna':
     parameters:
       - schema:
@@ -1796,13 +2146,9 @@ paths:
                     pubmed_id:
                       type: number
                       description: Numeric article identifier
-                    variant:
-                      type: string
-                      minLength: 1
-                      description: 'Variant as a string in the format <wt><pos><mut>, with single letter amino acid codes. '
                     position:
-                      type: number
-                      description: Position of the variant
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
                     score:
                       type: number
                       description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
@@ -1810,15 +2156,15 @@ paths:
                       type: string
                       minLength: 1
                       description: Direct URL to the article.
-                    wildtype:
+                    nucleotide:
                       type: string
                       minLength: 1
-                      description: The wildtype amino acid at this position.
+                      description: The wildtype nucleotide this position.
                     mutationstr:
                       type: string
-                      description: String representing the variant as extracted from the article.
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
                     taxonomy_id:
-                      type: string
+                      type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
                     gene_id:
                       type: string
@@ -1830,23 +2176,26 @@ paths:
                         - CDS
                         - UTR3
                         - UTR5
-                        - splice_Site
+                        - intronic
                     genomic_coordinates:
                       type: string
                       description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
-                      enum:
-                        - CDS
-                        - UTR3
-                        - UTR5
-                        - splice_Site
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
+                    mutantnucleotide:
+                      type: string
+                      description: Nucleotide that was the result of the mutation
                   required:
                     - article_source
                     - pubmed_id
-                    - variant
                     - position
                     - score
                     - url
-                    - wildtype
+                    - nucleotide
+                    - mutantnucleotide
               examples:
                 Example:
                   value:
@@ -1855,7 +2204,7 @@ paths:
                       mutantnucleotide: C
                       mutationstr: G709-1C
                       nucleotide: G
-                      position: 709
+                      position: '709'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1867,7 +2216,7 @@ paths:
                       mutantnucleotide: G
                       mutationstr: A1181-2G
                       nucleotide: A
-                      position: 1181
+                      position: '1181'
                       pubmed_id: 33960103
                       score: 19.950000762939453
                       taxonomy_id: 9606
@@ -1883,8 +2232,8 @@ paths:
       parameters:
         - schema:
             type: number
-            example: score=10
-            default: 10
+            example: 10
+            default: 5
           in: query
           name: score
           description: Minimum score required for a result to be returned.
@@ -1898,11 +2247,185 @@ paths:
               - UTR3
               - UTR5
               - UTRs
-              - splice_site
+              - intronic
           in: query
           name: sequence_type
           allowEmptyValue: true
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
+          name: all_organisms
+  '/keyword/{keyword}/dna':
+    parameters:
+      - schema:
+          type: string
+        name: keyword
+        in: path
+        required: true
+    get:
+      summary: DNA literature related to a given keyword
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      articleid: 10926844
+                      mutant: F
+                      position: 2
+                      score: 11.100000381469727
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/10926844/'
+                      variant: E2F
+                      wildtype: E
+                    - article_source: pubmed
+                      articleid: 25581683
+                      mutant: F
+                      position: 2
+                      score: 13.699999809265137
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/25581683/'
+                      variant: E2F
+                      wildtype: E
+                items:
+                  type: object
+                  properties:
+                    article_source:
+                      type: string
+                      minLength: 1
+                      description: 'The source of the article, for example "pubmed"'
+                    pubmed_id:
+                      type: number
+                      description: Numeric article identifier
+                    position:
+                      type: string
+                      description: 'Position of the mutant. This is always a string, because in the case of intronic mutants a suffix is added that shows a relative position.'
+                    score:
+                      type: number
+                      description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
+                    url:
+                      type: string
+                      minLength: 1
+                      description: Direct URL to the article.
+                    nucleotide:
+                      type: string
+                      minLength: 1
+                      description: The wildtype nucleotide at this position.
+                    mutationstr:
+                      type: string
+                      description: String representing the mutation in HGVS notation. This may not be exactly how the mutation is notated in the article.
+                    taxonomy_id:
+                      type: integer
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    gene_id:
+                      type: string
+                      description: NCBI Identifier of the corresponding gene.
+                    sequence_type:
+                      type: string
+                      description: Where in the sequence this mutation was sourced from.
+                      enum:
+                        - CDS
+                        - UTR3
+                        - UTR5
+                        - intronic
+                    genomic_coordinates:
+                      type: string
+                      description: A string representing the genomic coordinates. May be null if the genomic coordinates could not be determined.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
+                    mutantnucleotide:
+                      type: string
+                      description: Nucleotide that was the result of the mutation
+                  required:
+                    - article_source
+                    - pubmed_id
+                    - position
+                    - score
+                    - url
+                    - nucleotide
+              examples:
+                Example:
+                  value:
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: '709'
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      sequence_type: CDS
+                      genomic_coordinates: '1p34.1::45508807'
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: '1181'
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      sequence_type: CDS
+                      genomic_coordinates: '1p34.1::45508807'
+        '400':
+          description: Invalid sequence_type supplied
+        '404':
+          description: Transcript not found in database.
+      operationId: get-transcripts-transcript_id-literature
+      description: |-
+        DNA literature related to a given keyword. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations.
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 100 results. ?start=100 will return result 100-200, etc. **Beta**
+      parameters:
+        - schema:
+            type: number
+            example: 10
+            default: 5
+          in: query
+          name: score
+          description: Minimum score required for a result to be returned.
+          allowEmptyValue: true
+        - schema:
+            type: string
+            default: all
+            enum:
+              - all
+              - CDS
+              - UTR3
+              - UTR5
+              - UTRs
+              - intronic
+          in: query
+          name: sequence_type
+          allowEmptyValue: true
+          description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
+        - schema:
+            type: number
+          in: query
+          name: start
+          description: The number of records to skip
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          name: all_organisms
+          description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
   '/transcripts/{transcript_id}/external':
     parameters:
       - schema:

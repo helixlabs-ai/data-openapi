@@ -1142,6 +1142,12 @@ paths:
                         url:
                           type: string
                           description: Direct URL to the article.
+                        publicationdate:
+                          type: string
+                          description: Article date of publication as a string.
+                        articletitle:
+                          type: string
+                          description: Title of the article from which this mutant was extracted.
                   protein:
                     type: array
                     items:
@@ -1179,6 +1185,12 @@ paths:
                         wildtype:
                           type: string
                           description: The wildtype amino acid at this position.
+                        publicationdate:
+                          type: string
+                          description: Article date of publication as a string.
+                        articletitle:
+                          type: string
+                          description: Title of the article from which this mutant was extracted.
               examples:
                 Example:
                   value:
@@ -1355,6 +1367,17 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - articleid
@@ -1474,6 +1497,12 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - articleid
@@ -1591,6 +1620,12 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - articleid
@@ -1714,6 +1749,12 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - articleid
@@ -1854,6 +1895,12 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - gene_id
@@ -2042,6 +2089,12 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - gene_id
@@ -2209,6 +2262,12 @@ paths:
                     mutantnucleotide:
                       type: string
                       description: Nucleotide that was the result of the mutation
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - pubmed_id
@@ -2378,6 +2437,12 @@ paths:
                     mutantnucleotide:
                       type: string
                       description: Nucleotide that was the result of the mutation
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
                   required:
                     - article_source
                     - pubmed_id

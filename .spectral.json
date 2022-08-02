@@ -559,11 +559,7 @@
         "function": "truthy",
         "field": "url"
       },
-<<<<<<< HEAD
       "description": "The `contact` object should have a valid organization URL. \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"contact\": {\r\n     ... ,\r\n     \"url\": \"https://acme.com\",\r\n     ... \r\n},\r\n```",
-=======
-      "description": "Contact object should have \"url\"",
->>>>>>> master
       "message": "Contact object should have \"url\"."
     },
     "contact-email": {
@@ -575,11 +571,7 @@
         "function": "truthy",
         "field": "email"
       },
-<<<<<<< HEAD
       "description": "The `contact` object should have a valid email. \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"contact\": {\r\n     ... ,\r\n     ... ,\r\n     \"email\": \"support.contact@acme.com\"\r\n},\r\n```",
-=======
-      "description": "Contact object should have \"email\"",
->>>>>>> master
       "message": "Contact object should have \"email\""
     },
     "info-contact": {
@@ -591,11 +583,7 @@
         "function": "truthy",
         "field": "info.contact"
       },
-<<<<<<< HEAD
       "description": "The `info' object should include a `contact` object.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"info\": {\r\n    ... ,\r\n    ... ,\r\n    \"contact\": {\r\n      \"name\": \"ACME Corporation\",\r\n      \"url\": \"https://acme.com\",\r\n      \"email\": \"support.contact@acme.com\"\r\n    }\r\n  } \r\n}\r\n```",
-=======
-      "description": "Info object should have \"contact\" object.",
->>>>>>> master
       "message": "Info object should have \"contact\" object."
     },
     "info-description": {
@@ -607,11 +595,7 @@
         "function": "truthy",
         "field": "info.description"
       },
-<<<<<<< HEAD
       "description": "The `info` object should have a `description` object.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"info\": {\r\n    ... ,\r\n    ... ,\r\n    \"description\": \"This describes my API.\",\r\n    ... \r\n    }\r\n  } \r\n}\r\n```",
-=======
-      "description": "Info object should have \"description\" object.",
->>>>>>> master
       "message": "Info object should have \"description\" object."
     },
     "info-license": {
@@ -623,11 +607,7 @@
         "function": "truthy",
         "field": "info.license"
       },
-<<<<<<< HEAD
       "description": "The `info` object should have a `license` object. \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"info\": {\r\n    ... ,\r\n    ... ,\r\n    \"license\": {\r\n      \"name\": \"Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)\",\r\n      \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\"\r\n    }\r\n  } \r\n}\r\n```",
-=======
-      "description": "Info object should have \"license\" object.",
->>>>>>> master
       "message": "Info object should have \"license\" object."
     },
     "license-url": {
@@ -639,11 +619,7 @@
         "function": "truthy",
         "field": "url"
       },
-<<<<<<< HEAD
       "description": "The `license` object should include a valid url.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"license\": {\r\n    \"name\": \"Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)\",\r\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\"\r\n  }\r\n}\r\n```",
-=======
-      "description": "License object should include \"url\".",
->>>>>>> master
       "message": "License object should include \"url\"."
     },
     "no-eval-in-markdown": {
@@ -657,11 +633,7 @@
           "notMatch": "eval\\("
         }
       },
-<<<<<<< HEAD
       "description": "Markdown descriptions should not contain [`eval()` functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval), which pose a security risk. \r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"info\": {\r\n    ... ,\r\n    ... , \r\n    \"description\": \"API for users. eval()\"",
-=======
-      "description": "Markdown descriptions must not have \"eval(\".",
->>>>>>> master
       "message": "Markdown descriptions must not have \"eval(\"."
     },
     "no-script-tags-in-markdown": {
@@ -675,11 +647,7 @@
           "notMatch": "<script"
         }
       },
-<<<<<<< HEAD
       "description": "Markdown descriptions should not contain `script` tags, which pose a security risk. \r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"info\": {\r\n    ... ,\r\n    ... , \r\n    \"description\": \"API for users. <script>alert(\"You are Hacked\");</script>',\"\r\n```",
-=======
-      "description": "Markdown descriptions must not have \"eval(\".",
->>>>>>> master
       "message": "Markdown descriptions must not have \"<script>\" tags."
     },
     "openapi-tags-alphabetical": {
@@ -693,11 +661,7 @@
           "keyedBy": "name"
         }
       },
-<<<<<<< HEAD
       "description": "Global tags specified at the root OpenAPI Document level should be in alphabetical order based on the `name` property.\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"tags\":[\r\n      {\r\n         \"name\":\"Z Global Tag\"\r\n      },\r\n      {\r\n         \"name\":\"A Global Tag\"\r\n      }\r\n   ]\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"tags\":[\r\n      {\r\n         \"name\":\"A Global Tag\"\r\n      },\r\n      {\r\n         \"name\":\"Z Global Tag\"\r\n      }\r\n   ]\r\n}\r\n```",
-=======
-      "description": "OpenAPI object should have alphabetical \"tags\".",
->>>>>>> master
       "message": "OpenAPI object should have alphabetical \"tags\"."
     },
     "openapi-tags": {
@@ -714,11 +678,7 @@
           }
         }
       },
-<<<<<<< HEAD
       "description": "At least one global tag should be specified at the root OpenAPI Document level.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"tags\":[\r\n      {\r\n         \"name\":\"Global Tag #1\"\r\n      },\r\n      {\r\n         \"name\":\"Global Tag #2\"\r\n      }\r\n   ]\r\n}\r\n```",
-=======
-      "description": "OpenAPI object should have non-empty \"tags\" array.",
->>>>>>> master
       "message": "OpenAPI object should have non-empty \"tags\" array."
     },
     "operation-description": {
@@ -730,11 +690,7 @@
         "function": "truthy",
         "field": "description"
       },
-<<<<<<< HEAD
       "description": "Each operation should have a description. \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n    ... ,\r\n    \"description\": \"Get a list of users.\",\r\n    ... ,\r\n    ... ,\r\n  }\r\n}\r\n```",
-=======
-      "description": "Operation \"description\" should be present and non-empty string.",
->>>>>>> master
       "message": "Operation \"description\" should be present and non-empty string."
     },
     "operation-operationId": {
@@ -746,11 +702,7 @@
         "function": "truthy",
         "field": "operationId"
       },
-<<<<<<< HEAD
       "description": "All operations should have an `operationId`.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n        \"summary\": \"Get users\",\r\n        ... ,\r\n        \"operationId\": \"get-users\"\r\n      }\r\n}\r\n```",
-=======
-      "description": "Operation should have \"operationId\".",
->>>>>>> master
       "message": "Operation should have \"operationId\"."
     },
     "operation-operationId-valid-in-url": {
@@ -765,11 +717,7 @@
         },
         "field": "operationId"
       },
-<<<<<<< HEAD
       "description": "Operation IDs must not contain characters that are invalid for URLs. \r\n\r\n**Invalid Example**\r\n\r\nThe `operationId` in this example includes a pipe and space, which are invalid for URLs.\r\n\r\n```json lineNumbers\r\n{\r\n    \"/users\": {\r\n      \"get\": {\r\n        ... ,\r\n         \"operationId\": \"invalid|operationID \",\r\n         ... ,\r\n      }\r\n    }\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\nThis `operationId` is valid for URLs.\r\n\r\n```json lineNumbers\r\n{\r\n    \"/users\": {\r\n      \"get\": {\r\n        ... ,\r\n         \"operationId\": \"this-must-be-unique\",\r\n         ... ,\r\n      }\r\n    }\r\n}\r\n```",
-=======
-      "description": "operationId must not characters that are invalid when used in URL.",
->>>>>>> master
       "message": "OperationId should not have characters that are invalid when used in URL."
     },
     "operation-singular-tag": {
@@ -799,11 +747,7 @@
         },
         "field": "tags"
       },
-<<<<<<< HEAD
       "description": "At least one tag should be defined for each operation.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n     ... ,\r\n     ... ,\r\n     \"tags\": [\r\n        \"Users\"\r\n     ],\r\n  }\r\n}",
-=======
-      "description": "Operation should have non-empty \"tags\" array.",
->>>>>>> master
       "message": "Operation should have non-empty \"tags\" array."
     },
     "path-declarations-must-exist": {
@@ -818,11 +762,7 @@
         },
         "field": "@key"
       },
-<<<<<<< HEAD
       "description": "Path parameter declarations must not be empty.\r\n\r\n**Invalid Example**\r\n\r\n`/users/{}`\r\n\r\n**Valid Example**\r\n\r\n`/users/{userId}`",
-=======
-      "description": "Path parameter declarations must not be empty, ex.`/given/{}` is invalid.",
->>>>>>> master
       "message": "Path parameter declarations must not be empty, ex.\"/given/{}\" is invalid."
     },
     "contact-name": {
@@ -834,11 +774,7 @@
         "function": "truthy",
         "field": "name"
       },
-<<<<<<< HEAD
       "description": "The `contact` object should have an organization name. \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"contact\": {\r\n    \"name\": \"ACME Corporation\",\r\n     ... ,\r\n     ... \r\n},\r\n```\r\n",
-=======
-      "description": "Contact object should have \"name\"",
->>>>>>> master
       "message": "Contact object should have \"name\""
     },
     "path-keys-no-trailing-slash": {
@@ -853,11 +789,7 @@
         },
         "field": "@key"
       },
-<<<<<<< HEAD
       "description": "Path keys should not end in forward slashes. This is a best practice for working with web tooling, such as mock servers, code generators, application frameworks, and more).\r\n\r\n**Invalid Example**\r\n\r\n```json\r\n{\r\n \"/users/\": {\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json\r\n{\r\n \"/users\": {\r\n```",
-=======
-      "description": "Path should not end with slash.",
->>>>>>> master
       "message": "Path should not end with slash."
     },
     "path-not-include-query": {
@@ -872,11 +804,7 @@
         },
         "field": "@key"
       },
-<<<<<<< HEAD
       "description": "Paths should not include `query` string items. Instead, add them as parameters with `in: query`.\r\n\r\n**Invalid Example**\r\n\r\n```json\r\n{\r\n \"/users/{?id}\": {\r\n\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"parameters\": [\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"string\"\r\n      },\r\n      \"name\": \"id\",\r\n      \"in\": \"path\",\r\n      \"required\": true,\r\n      \"description\": \"User's ID\"\r\n    }\r\n  ]\r\n}\r\n\r\n```",
-=======
-      "description": "Path should not include query string.",
->>>>>>> master
       "message": "Path should not include query string."
     },
     "tag-description": {
@@ -888,11 +816,7 @@
         "function": "truthy",
         "field": "description"
       },
-<<<<<<< HEAD
       "description": "Tags defined at the global level should have a description.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"tags\": [\r\n      {\r\n         \"name\":\"Users\",\r\n         \"description\":\"End-user information\"\r\n      }\r\n   ]\r\n}\r\n```",
-=======
-      "description": "Tag object should have `description`.",
->>>>>>> master
       "message": "Tag object should have \"description\"."
     },
     "api-servers": {
@@ -913,11 +837,7 @@
           "dialect": "draft7"
         }
       },
-<<<<<<< HEAD
       "description": "A server should be defined at the root document level. This can be localhost, a development server, or a production server. \n\n**Valid OpenAPI V3 Example**\n\n```json\n{\n  \"servers\": [\n    {\n      \"url\": \"https://staging.myprodserver.com/v1\",\n      \"description\": \"Staging server\"\n    },\n    {\n      \"url\": \"https://myprodserver.com/v1\",\n      \"description\": \"Production server\"\n    }\n  ]\n}\n```\n\n**Valid OpenAPI V2 Example**\n\n```json\n{\n  \"host\": \"myprodserver.com\",\n  \"basePath\": \"/v2\",\n  \"schemes\": [\n    \"https\"\n  ]\n}\n```\n\n",
-=======
-      "description": "OpenAPI document should have a server defined. \n\nThis can be localhost, a development or production server. \n\n**OpenAPI V3 example**\n\n```json\n{\n  \"servers\": [\n    {\n      \"url\": \"https://staging.myprodserver.com/v1\",\n      \"description\": \"Staging server\"\n    },\n    {\n      \"url\": \"https://myprodserver.com/v1\",\n      \"description\": \"Production server\"\n    }\n  ]\n}\n```\n\n**OpenAPI V2 example**\n\n```json\n{\n  \"host\": \"myprodserver.com\",\n  \"basePath\": \"/v2\",\n  \"schemes\": [\n    \"https\"\n  ]\n}\n```\n\n",
->>>>>>> master
       "message": "Server should be present."
     },
     "server-trailing-slash": {
@@ -931,11 +851,7 @@
           "notMatch": "/$"
         }
       },
-<<<<<<< HEAD
       "description": "Server URLs should not end in forward slashes. This is a best practice for working with web tooling, such as mock servers, code generators, application frameworks, and more).\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"servers\": [\r\n    {\r\n      ... ,\r\n      \"url\": \"https://api.openweathermap.org/data/2.5/\"\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"servers\": [\r\n    {\r\n      ... ,\r\n      \"url\": \"https://api.openweathermap.org/data/2.5\"\r\n    }\r\n  ]\r\n}\r\n```",
-=======
-      "description": "Server URL should not have trailing slash.",
->>>>>>> master
       "message": "Server URL should not have trailing slash"
     },
     "operation-success-response": {
@@ -947,11 +863,7 @@
         "function": "oasOpSuccessResponse",
         "field": "responses"
       },
-<<<<<<< HEAD
       "description": "Operations should have at least one \"2xx\" or \"3xx\" response defined.\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n      ... ,\r\n      \"responses\": {},\r\n  }\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n      ... ,\r\n      \"responses\": {\r\n        \"200\": {\r\n          \"description\": \"OK\"\r\n        }\r\n      },\r\n  }\r\n}\r\n```",
-=======
-      "description": "Operation should have at least one \"2xx\" or \"3xx\" response.",
->>>>>>> master
       "message": "Operation should have at least one \"2xx\" or \"3xx\" response."
     },
     "path-params": {
@@ -962,11 +874,7 @@
       "then": {
         "function": "oasPathParam"
       },
-<<<<<<< HEAD
       "description": "Path parameters must be defined and valid in either the `path-parameters` or the `operation-parameters` object. Likewise, defined `path-parameters` or `operation-parameters` must be used in the `paths` string.\r\n\r\n**Valid Example**\r\n\r\nFor this path:\r\n\r\n`/users/{id}/{location}`\r\n\r\nThe following path parameters must be defined.\r\n\r\n```json lineNumbers\r\n      \"parameters\": [\r\n        {\r\n          \"schema\": {\r\n            \"type\": \"string\"\r\n          },\r\n          \"name\": \"id\",\r\n          \"in\": \"path\",\r\n          \"required\": true,\r\n          \"description\": \"This is the user's ID\"\r\n        },\r\n        {\r\n          \"schema\": {\r\n            \"type\": \"string\"\r\n          },\r\n          \"name\": \"location\",\r\n          \"in\": \"path\",\r\n          \"required\": true,\r\n          \"description\": \"This is the user's location\"\r\n        }\r\n      ]\r\n    }\r\n  },\r\n  ```",
-=======
-      "description": "Path parameters must be defined and valid.",
->>>>>>> master
       "message": "{{error}}"
     },
     "operation-parameters": {
@@ -978,11 +886,7 @@
         "function": "oasOpParams",
         "field": "parameters"
       },
-<<<<<<< HEAD
       "description": "Operation parameters should be unique and non-repeating:\r\n\r\n* `name` and `in` must be unique\r\n\r\nFor OAS2:\r\n\r\n* Operations should not have `in: body` and `in: formData` parameters.\r\n* Operations should have only one `in: body` parameter.\r\n\r\n**Invalid Example**\r\n\r\nIn this example, the query paramater `\"name\": \"last name\"` is repeated.\r\n\r\n```json lineNumbers\r\n{\r\n  \"parameters\": [\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"string\"\r\n      },\r\n      \"in\": \"query\",\r\n      \"name\": \"last name\",\r\n      \"description\": \"User's last name\"\r\n    },\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"string\"\r\n      },\r\n      \"in\": \"query\",\r\n      \"name\": \"last name\",\r\n      \"description\": \"User's last name\"\r\n    }\r\n  ],\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\nIn this example, query parameters are unique.\r\n\r\n```json lineNumbers\r\n{\r\n  \"parameters\": [\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"string\"\r\n      },\r\n      \"in\": \"query\",\r\n      \"name\": \"first name\",\r\n      \"description\": \"User's first name\"\r\n    },\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"string\"\r\n      },\r\n      \"in\": \"query\",\r\n      \"name\": \"last name\",\r\n      \"description\": \"User's last name\"\r\n    }\r\n  ],\r\n}\r\n```",
-=======
-      "description": "Operation parameters are unique and non-repeating.",
->>>>>>> master
       "message": "Operation parameters are unique and non-repeating."
     },
     "typed-enum": {
@@ -993,11 +897,7 @@
       "then": {
         "function": "typedEnum"
       },
-<<<<<<< HEAD
       "description": "All `enum' values should respect the specified type.\r\n\r\n**Invalid Example**\r\n\r\nIn this example, the `enum` type is `integer`, but the values are strings.\r\n\r\n```json lineNumbers\r\n{\r\n    \"schema\": {\r\n      \"type\": \"integer\",\r\n      \"enum\": [\r\n         \"standard\",\r\n         \"metric\",\r\n         \"imperial\"\r\n       ]\r\n     },\r\n```\r\n\r\n**Valid Example**\r\n\r\nIn this example, the `enum` type is `string` and the values are strings.\r\n\r\n```json lineNumbers\r\n{\r\n    \"schema\": {\r\n      \"type\": \"string\",\r\n      \"enum\": [\r\n         \"standard\",\r\n         \"metric\",\r\n         \"imperial\"\r\n       ]\r\n     },",
-=======
-      "description": "Enum values should respect the specified type.",
->>>>>>> master
       "message": "{{error}}"
     },
     "oas2-schema": {
@@ -1008,11 +908,7 @@
       "then": {
         "function": "oasDocumentSchema"
       },
-<<<<<<< HEAD
       "description": "This Stoplight core rule validates the structure of OpenAPI v2 specification. This rule should never be disabled.",
-=======
-      "description": "Validate structure of OpenAPI v2 specification.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas2"
@@ -1026,11 +922,7 @@
       "then": {
         "function": "oasDocumentSchema"
       },
-<<<<<<< HEAD
       "description": "This Stoplight core rule validates the structure of OpenAPI v3.x specification. This rule should never be disabled.",
-=======
-      "description": "Validate structure of OpenAPI v3 specification.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3"
@@ -1044,11 +936,7 @@
       "then": {
         "function": "oasUnusedComponent"
       },
-<<<<<<< HEAD
       "description": "A potentially shareable component is not being used. This may be expected, but you should review sharable components to avoid duplicate entry.",
-=======
-      "description": "Validate structure of OpenAPI v3 specification.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3"
@@ -1062,11 +950,7 @@
       "then": {
         "function": "oasOpIdUnique"
       },
-<<<<<<< HEAD
       "description": "Every operation in a single document must have a unique `operationID`.\r\n\r\n**Valid Example**\r\n\r\nIn this example, the `operationId` is `get-users`. This `operationId` must be unique in an API document.\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n        \"summary\": \"Get users\",\r\n        ... ,\r\n        \"operationId\": \"get-users\"\r\n      }\r\n}\r\n```\r\n",
-=======
-      "description": "Every operation must have unique operationId.",
->>>>>>> master
       "message": "Every operation must have unique operationId"
     },
     "oas2-operation-formData-consume-check": {
@@ -1077,11 +961,7 @@
       "then": {
         "function": "oasOpFormDataConsumeCheck"
       },
-<<<<<<< HEAD
       "description": "Operations with an `in: formData` parameter must include a `consumes` property with one of these values:\r\n\r\n`application/x-www-form-urlencoded`\r\n\r\n`multipart/form-data`\r\n\r\n**Valid Example**\r\n\r\nIn this example, the `consumes` property correctly includes the `multipart/form-data` value.\r\n\r\n```json lineNumbers\r\n{\r\n   \"post\":{\r\n      \"summary\":\"Uploads a file\",\r\n      \"consumes\":[\r\n         \"multipart/form-data\"\r\n      ],\r\n      \"parameters\":[\r\n         {\r\n            \"name\":\"name\",\r\n            \"in\":\"formData\",\r\n            \"description\":\"Upload a file\",\r\n            \"required\":false,\r\n            \"type\":\"string\"\r\n         }\r\n      ]\r\n   }\r\n}",
-=======
-      "description": "Operations with \"in: formData\" parameter must include \"application/x-www-form-urlencoded\" or \"multipart/form-data\" in their \"consumes\" property.",
->>>>>>> master
       "message": "Operations with \"in: formData\" parameter must include \"application/x-www-form-urlencoded\" or \"multipart/form-data\" in their \"consumes\" property.",
       "formats": [
         "oas2"
@@ -1095,11 +975,7 @@
       "then": {
         "function": "oasTagDefined"
       },
-<<<<<<< HEAD
       "description": "Tags defined at the operation level should also be defined at the global level. \r\n\r\n**Operation-level Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"get\": {\r\n     ... ,\r\n     ... ,\r\n     \"tags\": [\r\n        \"Users\"\r\n     ],\r\n  }\r\n}  \r\n```\r\n\r\n**Global-level Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"tags\": [\r\n     {\r\n       \"name\": \"Users\",\r\n       ... ,\r\n     }\r\n  ],\r\n}\r\n\r\n```",
-=======
-      "description": "Operation tags must be defined in global tags.",
->>>>>>> master
       "message": "Operation tags must be defined in global tags"
     },
     "no-$ref-siblings": {
@@ -1110,11 +986,7 @@
       "then": {
         "function": "refSiblings"
       },
-<<<<<<< HEAD
       "description": "Property must not be placed among $ref.",
-=======
-      "description": "Property must not be placed among $ref",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3.0",
@@ -1134,11 +1006,7 @@
           ]
         }
       },
-<<<<<<< HEAD
       "description": "Operation `security` values must match a scheme defined in the global `securityDefinitions` object. Empty `security` values for operations are ignored if authentication is not explicity required or is optional.\r\n\r\n**Valid Example**\r\n\r\nFor this global security scheme:\r\n\r\n```json lineNumbers\r\n{\r\n  \"securityDefinitions\": {\r\n    \"API Key\": {\r\n      \"name\": \"API Key\",\r\n      \"type\": \"apiKey\",\r\n      \"in\": \"query\"\r\n    }\r\n  }\r\n}\r\n```\r\n\r\nThis is a valid operation security value:\r\n\r\n```json lineNumbers\r\n{  \"operationId\": \"get-users-userId\",\r\n        \"security\": [\r\n          {\r\n            \"API Key\": []\r\n          }\r\n        ]\r\n}\r\n```\r\n\r\n**Invalid Example**\r\n\r\nFor the same global security scheme, this is an invalid operation security value:\r\n\r\n```json lineNumbers\r\n{  \"operationId\": \"get-users-userId\",\r\n        \"security\": [\r\n          {\r\n            \"oath2\": []\r\n          }\r\n        ]\r\n}\r\n```",
-=======
-      "description": "Operation \"security\" values must match a scheme defined in the \"securityDefinitions\" object.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas2"
@@ -1158,11 +1026,7 @@
           ]
         }
       },
-<<<<<<< HEAD
       "description": "Operation `security` values must match a scheme defined in the global `components.security.Schemes` object. \r\n\r\n**Valid Example**\r\n\r\nFor this global security scheme:\r\n\r\n```json lineNumbers\r\n{\r\n\"components\": {\r\n  \"security\": [\r\n    {\r\n      \"app-id\": []\r\n    }\r\n  ]\r\n }\r\n}\r\n```\r\n\r\n`app-id` is a valid operation `security` value:\r\n\r\n```json lineNumbers\r\n{  \r\n    \"get\": {\r\n        \"security\": [\r\n          {\r\n            \"app-id\": []\r\n          }\r\n      ]\r\n  }\r\n}  \r\n```\r\n\r\n**Invalid Example**\r\n\r\nFor the same global security scheme, `oath2` is an invalid operation `security` value:\r\n\r\n```json lineNumbers\r\n{  \r\n    \"get\": {\r\n        \"security\": [\r\n          {\r\n            \"oath2\": []\r\n          }\r\n      ]\r\n  }\r\n}  \r\n```",
-=======
-      "description": "Operation `security` values must match a scheme defined in the `components.securitySchemes` object.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3"
@@ -1183,11 +1047,7 @@
         },
         "field": "enum"
       },
-<<<<<<< HEAD
       "description": "All enum values should be unique.\r\n\r\n**Invalid Example**\r\n\r\nThere are two `json` enum values.\r\n\r\n```json lineNumbers\r\n{\r\n  \"schema\":{\r\n     \"type\":\"string\",\r\n       \"enum\":[\r\n          \"json\",\r\n          \"json\",\r\n          \"html\"\r\n   ]\r\n }\r\n}\r\n```\r\n**Valid Example**\r\n\r\nAll enum values are unique.\r\n\r\n```json lineNumbers\r\n{\r\n  \"schema\":{\r\n     \"type\":\"string\",\r\n       \"enum\":[\r\n          \"json\",\r\n          \"xml\",\r\n          \"html\"\r\n   ]\r\n }\r\n}\r\n```",
-=======
-      "description": "Enum values should not have duplicate entry.",
->>>>>>> master
       "message": "{{error}}"
     },
     "oas2-api-schemes": {
@@ -1209,13 +1069,8 @@
         },
         "field": "schemes"
       },
-<<<<<<< HEAD
       "description": "OpenAPI 2 host `schemes` reflect the transfer protocol of the API. Host schemes must be present and an array with one or more of these values: `http`, `https`, `ws`, or `wss`.\r\n\r\n**Valid Example**\r\n\r\nThis example shows that host schemes are `http` and `https`.\r\n\r\n```json\r\n{\r\n   \"schemes\":[\r\n      \"http\",\r\n      \"https\"\r\n   ]\r\n}\r\n \r\n```",
       "message": "OpenAPI host \"schemes\" must be present and non-empty array",
-=======
-      "description": "OpenAPI host \"schemes\" must be present and non-empty array.",
-      "message": "OpenAPI host \"schemes\" must be present and non-empty array.",
->>>>>>> master
       "formats": [
         "oas2"
       ]
@@ -1246,10 +1101,7 @@
           "notMatch": "example.com"
         }
       },
-<<<<<<< HEAD
       "description": "Server URLs must not direct to example.com. This helps ensure URLs are valid before you distribute your API document.\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"servers\": [\r\n    {\r\n      ... ,\r\n      \"url\": \"https://example.com\"\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{  \r\n  \"servers\": [\r\n    {\r\n      ... ,\r\n      \"url\": \"https://api.openweathermap.org/data/2.5\"\r\n    }\r\n  ]\r\n}\r\n```",
-=======
->>>>>>> master
       "message": "Server URL must not point at example.com."
     },
     "parameter-description": {
@@ -1261,10 +1113,7 @@
         "function": "truthy",
         "field": "description"
       },
-<<<<<<< HEAD
       "description": "All `parameter` objects should have a description.\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"parameters\": [\r\n    {\r\n      \"schema\": {\r\n        \"type\": \"integer\"\r\n      },\r\n      ... ,\r\n      ... ,\r\n      \"description\": \"The number of days to include in the response.\"\r\n    }\r\n}\r\n```\r\n",
-=======
->>>>>>> master
       "message": "Parameter objects must have \"description\"."
     },
     "oas2-anyOf": {
@@ -1276,11 +1125,7 @@
         "function": "undefined",
         "field": "anyOf"
       },
-<<<<<<< HEAD
       "description": "The `anyOf` keyword is not supported in OAS2. Only `allOf` is supported.\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"schema\": {\r\n     \"anyOf\": [\r\n       {\r\n         \"properties\": {\r\n           \"firstName\": {\r\n             \"type\": \"string\"\r\n            },\r\n           \"lastName\": {\r\n             \"type\": \"string\"\r\n            }\r\n          }\r\n        },\r\n        {}\r\n      ],\r\n   }\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"schema\": {\r\n              \"type\": \"object\",\r\n              \"properties\": {\r\n                \"firstName\": {\r\n                  \"type\": \"string\"\r\n                },\r\n                \"lastName\": {\r\n                  \"type\": \"string\"\r\n                }\r\n             },\r\n           }\r\n}\r\n```",
-=======
-      "description": "anyOf is not available in OpenAPI v2, it was added in OpenAPI v3",
->>>>>>> master
       "message": "anyOf is not available in OpenAPI v2, it was added in OpenAPI v3",
       "formats": [
         "oas2"
@@ -1295,11 +1140,7 @@
         "function": "undefined",
         "field": "oneOf"
       },
-<<<<<<< HEAD
       "description": "The `oneOf` keyword is not supported in OAS2. Only `allOf` is supported.\r\n\r\n**Invalid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"schema\": {\r\n     \"oneOf\": [\r\n       {\r\n         \"properties\": {\r\n           \"firstName\": {\r\n             \"type\": \"string\"\r\n            },\r\n           \"lastName\": {\r\n             \"type\": \"string\"\r\n            }\r\n          }\r\n        },\r\n        {}\r\n      ],\r\n   }\r\n}\r\n```\r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n  \"schema\": {\r\n              \"type\": \"object\",\r\n              \"properties\": {\r\n                \"firstName\": {\r\n                  \"type\": \"string\"\r\n                },\r\n                \"lastName\": {\r\n                  \"type\": \"string\"\r\n                }\r\n             },\r\n           }\r\n}\r\n```",
-=======
-      "description": "anyOf is not available in OpenAPI v2, it was added in OpenAPI v3",
->>>>>>> master
       "message": "oneOf is not available in OpenAPI v2, it was added in OpenAPI v3",
       "formats": [
         "oas2"
@@ -1319,11 +1160,7 @@
           ]
         }
       },
-<<<<<<< HEAD
       "description": "The `examples` object should include a `value` or `externalValue` field, but cannot include both.\r\n\r\n**Invalid Example**\r\n\r\nThis example includes both a `value` field and an `externalValue` field.\r\n\r\n```json lineNumbers\r\n{\r\n    \"examples\": {\r\n      \"example-1\": {\r\n        \"value\": {\r\n          \"id\": \"string\",\r\n          \"name\": \"string\"\r\n       },\r\n        \"externalValue\": {\r\n          \"id\": \"string\",\r\n           \"name\": \"string\"\r\n         }\r\n      }\r\n   }\r\n}\r\n```\r\n\r\n**Valid Example** \r\n\r\nThis example includes only a `value` field.\r\n\r\n```json lineNumbers\r\n{\r\n     \"examples\": {\r\n       \"example-1\": {\r\n         \"value\": {\r\n            \"id\": \"string\",\r\n            \"name\": \"string\"\r\n       }\r\n    }\r\n  }\r\n}",
-=======
-      "description": "Examples must have either \"value\" or \"externalValue\" field.",
->>>>>>> master
       "message": "Examples must have either \"value\" or \"externalValue\" field.",
       "formats": [
         "oas3"
@@ -1342,11 +1179,7 @@
           "type": "schema"
         }
       },
-<<<<<<< HEAD
       "description": "Examples must be valid against their defined schema. \r\n\r\n**Valid Example**\r\n\r\nThe following schema includes the `name` and `petType` properties.  \r\n\r\n```json lineNumbers\r\n{\r\n   \"Pet\":{\r\n      \"type\":\"object\",\r\n      \"properties\":{\r\n         \"name\":{\r\n            \"type\":\"string\"\r\n         },\r\n         \"petType\":{\r\n            \"type\":\"string\"\r\n         }\r\n      }\r\n   }\r\n}\r\n```\r\n\r\nWhen referenced in a response example, the property names on line 6 and 7 must match those in the schema (`petName` and `petType`).\r\n\r\n```json lineNumbers\r\n{\r\n   \"responses\":{\r\n      \"200\":{\r\n         \"content\":{\r\n            \"application/json\":{\r\n               \"examples\":{\r\n                  \"Pet Example\":{\r\n                     \"petName\":\"Bubbles\",\r\n                     \"petType\":\"Dog\"\r\n                  }\r\n               },\r\n               \"schema\":{\r\n                  \"$ref\":\"#/definitions/Pet\"\r\n               }\r\n            }\r\n         }\r\n      }\r\n   }\r\n}\r\n```",
-=======
-      "description": "Examples must be valid against their defined schema.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas2"
@@ -1365,11 +1198,7 @@
           "type": "schema"
         }
       },
-<<<<<<< HEAD
       "description": "Examples must be valid against their defined schema. \r\n\r\n**Valid Example**\r\n\r\nThe following schema includes the `name` and `petType` properties.  \r\n\r\n```json lineNumbers\r\n{\r\n   \"Pet\":{\r\n      \"type\":\"object\",\r\n      \"properties\":{\r\n         \"name\":{\r\n            \"type\":\"string\"\r\n         },\r\n         \"petType\":{\r\n            \"type\":\"string\"\r\n         }\r\n      }\r\n   }\r\n}\r\n```\r\n\r\nWhen referenced in a response example, the property names on line 6 and 7 must match those in the schema (`petName` and `petType`).\r\n\r\n```json lineNumbers\r\n{\r\n   \"responses\":{\r\n      \"200\":{\r\n         \"content\":{\r\n            \"application/json\":{\r\n               \"examples\":{\r\n                  \"Pet Example\":{\r\n                     \"petName\":\"Bubbles\",\r\n                     \"petType\":\"Dog\"\r\n                  }\r\n               },\r\n               \"schema\":{\r\n                  \"$ref\":\"#/definitions/Pet\"\r\n               }\r\n            }\r\n         }\r\n      }\r\n   }\r\n}\r\n```",
-=======
-      "description": "Examples must be valid against their defined schema.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3"
@@ -1388,11 +1217,7 @@
           "type": "media"
         }
       },
-<<<<<<< HEAD
       "description": "Examples must be valid against their defined schema. Common reasons you may see errors if:\r\n\r\n* The value used for property examples is not the same type indicated in the schema (string vs. integer, for example).\r\n* Examples contain properties not included in the schema.\r\n\r\n**Valid Example**\r\n\r\nThe following schema indicates that the `id` property is a `string` type.  \r\n\r\n```json lineNumbers\r\n\"User\":{\r\n   \"title\":\"User\",\r\n   \"type\":\"object\",\r\n   \"properties\":{\r\n      \"id\":{\r\n         \"type\":\"string\"\r\n      }\r\n   }\r\n}\r\n```\r\nWhen the example is referenced in a response, the `id` property must be `string`.\r\n\r\n```json lineNumbers\r\n{\r\n   \"responses\":{\r\n      \"200\":{\r\n         \"description\":\"User Found\",\r\n         \"schema\":{\r\n            \"$ref\":\"#/definitions/User\"\r\n         },\r\n         \"examples\":{\r\n            \"Get User Alice Smith\":{\r\n               \"id\": \"smith, alice\",\r\n            }\r\n         }\r\n      },\r\n```",
-=======
-      "description": "Examples must be valid against their defined schema.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas2"
@@ -1411,11 +1236,7 @@
           "type": "media"
         }
       },
-<<<<<<< HEAD
       "description": "The following schema includes the `name` and `petType` properties.  \r\n\r\n**Valid Example**\r\n\r\n```json lineNumbers\r\n{\r\n   \"Pet\":{\r\n      \"type\":\"object\",\r\n      \"properties\":{\r\n         \"name\":{\r\n            \"type\":\"string\"\r\n         },\r\n         \"petType\":{\r\n            \"type\":\"string\"\r\n         }\r\n      }\r\n   }\r\n}\r\n```\r\n\r\nWhen referenced in a response example, the property names on line 6 and 7 must match those in the schema (`petName` and `petType`).\r\n\r\n```json lineNumbers\r\n{\r\n   \"responses\":{\r\n      \"200\":{\r\n         \"content\":{\r\n            \"application/json\":{\r\n               \"examples\":{\r\n                  \"Pet Example\":{\r\n                     \"petName\":\"Bubbles\",\r\n                     \"petType\":\"Dog\"\r\n                  }\r\n               },\r\n               \"schema\":{\r\n                  \"$ref\":\"#/definitions/Pet\"\r\n               }\r\n            }\r\n         }\r\n      }\r\n   }\r\n}\r\n```",
-=======
-      "description": "Examples must be valid against their defined schema.",
->>>>>>> master
       "message": "{{error}}",
       "formats": [
         "oas3"

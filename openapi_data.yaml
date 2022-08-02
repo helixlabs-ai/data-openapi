@@ -65,7 +65,7 @@ info:
   termsOfService: 'https://www.bio-prodict.com/static/pdf/general-terms-and-conditions-V20191130-bio-prodict.pdf'
   contact:
     email: info@helixlabs.ai
-  version: 0.1.0
+  version: 0.6.2
 externalDocs:
   description: Find out more about Helix Labs
   url: 'https://helixlabs.ai'

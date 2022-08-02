@@ -1142,6 +1142,27 @@ paths:
                         url:
                           type: string
                           description: Direct URL to the article.
+                        publicationdate:
+                          type: string
+                          description: Article date of publication as a string.
+                        articletitle:
+                          type: string
+                          description: Title of the article from which this mutant was extracted.
+                        mutationoccurences:
+                          type: array
+                          description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                          items:
+                            type: string
+                        mutationeffect:
+                          type: array
+                          description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                          items:
+                            type: object
+                            properties:
+                              effect:
+                                type: string
+                              score:
+                                type: number
                   protein:
                     type: array
                     items:
@@ -1179,6 +1200,29 @@ paths:
                         wildtype:
                           type: string
                           description: The wildtype amino acid at this position.
+                        publicationdate:
+                          type: string
+                          description: Article date of publication as a string.
+                        articletitle:
+                          type: string
+                          description: Title of the article from which this mutant was extracted.
+                        mutationoccurences:
+                          type: array
+                          description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing
+                          items:
+                            type: string
+                        mutationeffect:
+                          type:
+                            - string
+                            - array
+                          description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                          items:
+                            type: object
+                            properties:
+                              effect:
+                                type: string
+                              score:
+                                type: number
               examples:
                 Example:
                   value:
@@ -1264,7 +1308,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. **Beta**'
+      description: |-
+        All literature related to a given gene. Access based on gene name. This endpoint will return all literature, including DNA and protein literature. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -1279,6 +1326,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/vep/{identifier}/literature':
     parameters:
       - schema:
@@ -1350,6 +1402,32 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    keywords:
+                      type: array
+                      description: A list of keywords related to this variant.
+                      items:
+                        type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - articleid
@@ -1469,6 +1547,27 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - articleid
@@ -1586,6 +1685,27 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - articleid
@@ -1709,6 +1829,27 @@ paths:
                       type: string
                       minLength: 1
                       description: The wildtype amino acid at this position.
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - articleid
@@ -1849,6 +1990,27 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - gene_id
@@ -1900,7 +2062,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given gene. Access based on an NCBI gene identifier. This endpoint will return all DNA literature, but can be constrained to coding sequences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -1928,6 +2093,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/genename/{gene_name}/dna':
     parameters:
       - schema:
@@ -2029,6 +2199,27 @@ paths:
                       description: A list of keywords related to this variant.
                       items:
                         type: string
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - gene_id
@@ -2070,7 +2261,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given gene. Access based on gene name. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given gene. Access based on gene name. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2097,6 +2291,58 @@ paths:
           in: query
           name: all_organisms
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
+  /genename/list:
+    parameters: []
+    get:
+      summary: List all human gene names
+      tags:
+        - Literature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                x-examples:
+                  example-1:
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: C
+                      mutationstr: G709-1C
+                      nucleotide: G
+                      position: 709
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.G709C
+                    - article_source: pubmed
+                      gene_id: NM_000202.7
+                      mutantnucleotide: G
+                      mutationstr: A1181-2G
+                      nucleotide: A
+                      position: 1181
+                      pubmed_id: 33960103
+                      score: 19.950000762939453
+                      taxonomy_id: 9606
+                      url: 'https://pubmed.ncbi.nlm.nih.gov/33960103/'
+                      variant: c.A1181G
+                items:
+                  type: string
+              examples: {}
+      operationId: ''
+      description: Returns a list of human gene names.
+      parameters: []
+      x-internal: false
   '/transcripts/{transcript_id}/dna':
     parameters:
       - schema:
@@ -2188,6 +2434,27 @@ paths:
                     mutantnucleotide:
                       type: string
                       description: Nucleotide that was the result of the mutation
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - pubmed_id
@@ -2228,7 +2495,10 @@ paths:
         '404':
           description: Transcript not found in database.
       operationId: get-transcripts-transcript_id-literature
-      description: 'DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. **Beta**'
+      description: |-
+        DNA literature related to a given protein. Access based on Ensembl transcript identifier. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations. 
+
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2258,6 +2528,11 @@ paths:
           in: query
           description: 'Boolean indicating whether to include all organisms, as opposed to the default of only returning human results.'
           name: all_organisms
+        - schema:
+            type: integer
+          in: query
+          name: start
+          description: Pagination offset as the number of elements.
   '/keyword/{keyword}/dna':
     parameters:
       - schema:
@@ -2349,6 +2624,27 @@ paths:
                     mutantnucleotide:
                       type: string
                       description: Nucleotide that was the result of the mutation
+                    publicationdate:
+                      type: string
+                      description: Article date of publication as a string.
+                    articletitle:
+                      type: string
+                      description: Title of the article from which this mutant was extracted.
+                    mutationoccurences:
+                      type: array
+                      description: A list of strings that indicate how the mutation was found in the source document. May not be a 100% match due to slight preprocessing.
+                      items:
+                        type: string
+                    mutationeffect:
+                      type: array
+                      description: '**Alpha** A list of effects caused by the mutation according to the source document, with associated scores.'
+                      items:
+                        type: object
+                        properties:
+                          effect:
+                            type: string
+                          score:
+                            type: number
                   required:
                     - article_source
                     - pubmed_id
@@ -2391,7 +2687,7 @@ paths:
       description: |-
         DNA literature related to a given keyword. This endpoint will return all DNA literature, but can be constrained to Coding suquences, UTR3, UTR5 or splice site mutations.
 
-        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 100 results. ?start=100 will return result 100-200, etc. **Beta**
+        Results are paginated, with at most 100 being presented at once. Using the `start` query parameters it is possible to advance through the records. For example, ?start=0 will return the first 1000 results. ?start=1000 will return result 1000-2000, etc. **Beta**
       parameters:
         - schema:
             type: number
@@ -2416,10 +2712,10 @@ paths:
           allowEmptyValue: true
           description: 'Where in the sequence the mutations can be obtained from. Coding Sequence (CDS), either end of the sequence (UTR3, UTR5, UTRs), splice site or all.'
         - schema:
-            type: number
+            type: integer
           in: query
           name: start
-          description: The number of records to skip
+          description: Pagination offset.
         - schema:
             type: boolean
             default: false

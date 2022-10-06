@@ -65,7 +65,7 @@ info:
   termsOfService: 'https://www.bio-prodict.com/static/pdf/general-terms-and-conditions-V20191130-bio-prodict.pdf'
   contact:
     email: info@helixlabs.ai
-  version: 0.6.2
+  version: 0.6.3
 externalDocs:
   description: Find out more about Helix Labs
   url: 'https://helixlabs.ai'
@@ -342,7 +342,13 @@ paths:
                               description: 'Whether or not the structure corresponds directly to the transcript protein, or is a homolog.'
                             taxonomy_id:
                               type: integer
-                              description: NCBI taxonomy identifier corresponding to the structure. Common identifiers include 9606 for human and 562 for E. coli.
+                              description: NCBI Taxonomy ID indicating the organism related to this article.
+                            accession:
+                              description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                              type: string
+                            accessiontype:
+                              description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                              type: string
                             transcript_identifier:
                               type: string
                               minLength: 1
@@ -573,6 +579,12 @@ paths:
                       taxonomy_id:
                         type: integer
                         description: NCBI taxonomy identifier corresponding to the structure. Common identifiers include 9606 for human and 562 for E. coli.
+                      accession:
+                        description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                        type: string
+                      accessiontype:
+                        description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                        type: string
               examples:
                 Example Response (Default):
                   value:
@@ -1130,15 +1142,21 @@ paths:
                           description: 'Match score assigned to this article, higher scores indicate higher odds of being associated with the relevant variant.'
                         sequence_type:
                           type: string
-                          description: Where in the sequence this mutation was sourced from.
                           enum:
                             - CDS
                             - UTR3
                             - UTR5
                             - intronic
+                          description: Where in the sequence this mutation was sourced from.
                         taxonomy_id:
                           type: integer
                           description: NCBI Taxonomy ID indicating the organism related to this article.
+                        accession:
+                          description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                          type: string
+                        accessiontype:
+                          description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                          type: string
                         url:
                           type: string
                           description: Direct URL to the article.
@@ -1171,6 +1189,9 @@ paths:
                         article_source:
                           type: string
                           description: 'The source of the article, for example "pubmed"'
+                        proteinid:
+                          type: string
+                          description: 'Protein identifier, for example an Ensembl Transcript Identifier.'
                         articleid:
                           type: integer
                           description: Numeric article identifier
@@ -1191,6 +1212,12 @@ paths:
                         taxonomy_id:
                           type: integer
                           description: NCBI Taxonomy ID indicating the organism related to this article.
+                        accession:
+                          description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                          type: string
+                        accessiontype:
+                          description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                          type: string
                         url:
                           type: string
                           description: Direct URL to the article.
@@ -1377,6 +1404,10 @@ paths:
                       type: string
                       minLength: 1
                       description: 'The source of the article, for example "pubmed"'
+                    proteinid:
+                      type: string
+                      minLength: 1
+                      description: 'Protein identifier, for example an Ensembl Transcript Identifier.'
                     articleid:
                       type: number
                       description: Numeric article identifier
@@ -1522,6 +1553,10 @@ paths:
                       type: string
                       minLength: 1
                       description: 'The source of the article, for example "pubmed"'
+                    proteinid:
+                      type: string
+                      minLength: 1
+                      description: 'Protein identifier, for example an Ensembl Transcript Identifier.'
                     articleid:
                       type: number
                       description: Numeric article identifier
@@ -1570,6 +1605,7 @@ paths:
                             type: number
                   required:
                     - article_source
+                    - proteinid
                     - articleid
                     - mutant
                     - position
@@ -1660,6 +1696,10 @@ paths:
                       type: string
                       minLength: 1
                       description: 'The source of the article, for example "pubmed"'
+                    proteinid:
+                      type: string
+                      minLength: 1
+                      description: 'Protein identifier, for example an Ensembl Transcript Identifier.'
                     articleid:
                       type: number
                       description: Numeric article identifier
@@ -1804,6 +1844,10 @@ paths:
                       type: string
                       minLength: 1
                       description: 'The source of the article, for example "pubmed"'
+                    proteinid:
+                      type: string
+                      minLength: 1
+                      description: 'Protein identifier, for example an Ensembl Transcript Identifier.'
                     articleid:
                       type: number
                       description: Numeric article identifier
@@ -1852,6 +1896,7 @@ paths:
                             type: number
                   required:
                     - article_source
+                    - proteinid
                     - articleid
                     - mutant
                     - position
@@ -1967,8 +2012,14 @@ paths:
                       type: number
                       description: Score representing the likelihood that this article refers to this mutant (higher is better)
                     taxonomy_id:
-                      type: number
+                      type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     url:
                       type: string
                       minLength: 1
@@ -2177,8 +2228,14 @@ paths:
                       type: number
                       description: Score representing the likelihood that this article refers to this mutant (higher is better).
                     taxonomy_id:
-                      type: number
+                      type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     url:
                       type: string
                       minLength: 1
@@ -2412,6 +2469,12 @@ paths:
                     taxonomy_id:
                       type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     gene_id:
                       type: string
                       description: NCBI Identifier of the corresponding gene.
@@ -2602,6 +2665,12 @@ paths:
                     taxonomy_id:
                       type: integer
                       description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     gene_id:
                       type: string
                       description: NCBI Identifier of the corresponding gene.

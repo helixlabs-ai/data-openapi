@@ -1560,6 +1560,15 @@ paths:
                     articleid:
                       type: number
                       description: Numeric article identifier
+                    taxonomy_id:
+                      type: integer
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     mutant:
                       type: string
                       minLength: 1
@@ -1717,6 +1726,15 @@ paths:
                       type: string
                       minLength: 1
                       description: Direct URL to the article.
+                    taxonomy_id:
+                      type: integer
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     variant:
                       type: string
                       minLength: 1
@@ -1851,6 +1869,15 @@ paths:
                     articleid:
                       type: number
                       description: Numeric article identifier
+                    taxonomy_id:
+                      type: integer
+                      description: NCBI Taxonomy ID indicating the organism related to this article.
+                    accession:
+                      description: 'Protein accession, for example an Uniprot/Trembl identifier or PDB ID.'
+                      type: string
+                    accessiontype:
+                      description: 'Type of protein accession, like ''trembl'' or ''pdb''.'
+                      type: string
                     mutant:
                       type: string
                       minLength: 1

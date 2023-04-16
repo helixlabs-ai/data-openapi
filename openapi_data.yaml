@@ -1652,7 +1652,7 @@ paths:
           in: query
           name: score
           description: Minimum score required for a result to be returned.
-  '/transcripts/{transcript_id}/{position}literature':
+  '/transcripts/{transcript_id}/{position}/literature':
     parameters:
       - schema:
           type: string
